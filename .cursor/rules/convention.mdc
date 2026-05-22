@@ -1,0 +1,47 @@
+---
+description: Convenção de pastas do .cursor do projeto Domo
+alwaysApply: true
+---
+
+# Arquitetura .cursor do Domo
+
+Sempre que for criar, ler ou sugerir arquivos dentro de `.cursor/`, siga esta estrutura:
+
+```
+.cursor/
+  agents/        # Subagentes e commands invocáveis no chat (.md)
+  rules/         # Regras auto-aplicadas (.mdc)
+  skills/        # Guias técnicos para implementação (.md)
+  references/    # Contexto de domínio e documentação do produto (.md)
+```
+
+## agents/
+
+- Todo arquivo `.md` com frontmatter `name` + `description` é invocável no chat.
+- **Agentes complexos** (memória de visão, múltiplas etapas): nome descritivo, ex: `gerador-procedural.md`.
+- **Commands rápidos** (propósito único): nome com verbo no infinitivo, ex: `criar-tela.md`, `ler-figma.md`.
+
+## rules/
+
+- Regras com `alwaysApply: true` ficam sempre no contexto.
+- Regras com `globs` são ativadas quando arquivos correspondentes estão abertos.
+- Mantenha cada regra com foco único e abaixo de 80 linhas.
+
+## skills/
+
+- Cada skill descreve **como fazer X tecnicamente** — não é código pronto, é instrução para o agente.
+- Antes de implementar algo técnico (criar uma tela, integrar Figma, etc.), verifique se existe uma skill correspondente em `.cursor/skills/`.
+- Formato obrigatório de cada skill:
+  - `# Quando usar` — contexto e gatilho
+  - `# Passos` — sequência de ações
+  - `# Exemplo` — trecho de código ou estrutura esperada
+
+## references/
+
+- Documentação de domínio do Domo: paleta de cores, tokens de design, mapa de navegação, catálogo de componentes.
+- Consulte `.cursor/references/` antes de tomar decisões de UI, nomes de rotas ou estrutura de dados.
+- Não é código — é contexto que evita contradições com o design system e produto existente.
+
+## Regra geral
+
+Quando criar um novo agente ou command: pergunte se existe uma skill ou reference relevante a referenciar. Se não existir, avalie se vale criar junto.

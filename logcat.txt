@@ -1,0 +1,384 @@
+--------- beginning of system
+05-09 23:43:34.034  1800  2716 I ActivityManager: Force stopping com.example.domo appid=10230 user=0: from pid 10580
+05-09 23:43:34.036  1800  2716 I AppsFilter: interaction: PackageSetting{217f2ca com.example.app/10224} -> PackageSetting{dcf1967 com.example.domo/10230} BLOCKED
+05-09 23:43:34.036  1800  2716 I AppsFilter: interaction: PackageSetting{f902f58 com.example.app_buracos/10225} -> PackageSetting{dcf1967 com.example.domo/10230} BLOCKED
+--------- beginning of main
+05-09 23:43:34.039  3068  3068 D CarrierSvcBindHelper: onHandleForceStop: [com.example.domo]
+05-09 23:43:34.040  3068  3068 D CarrierSvcBindHelper: No carrier app for: 0
+05-09 23:43:34.176 10583 10583 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+05-09 23:43:34.185 10583 10583 I AndroidRuntime: Using default boot image
+05-09 23:43:34.185 10583 10583 I AndroidRuntime: Leaving lock profiling enabled
+05-09 23:43:34.187 10583 10583 I app_process: Using CollectorTypeCMC GC.
+05-09 23:43:34.267 10583 10583 D nativeloader: InitDefaultPublicLibraries for_preload=1: libandroid.so:libaaudio.so:libamidi.so:libbinder_ndk.so:libc.so:libcamera2ndk.so:libdl.so:libEGL.so:libGLESv1_CM.so:libGLESv2.so:libGLESv3.so:libicu.so:libicui18n.so:libicuuc.so:libjnigraphics.so:liblog.so:libmediandk.so:libm.so:libnativehelper.so:libnativewindow.so:libOpenMAXAL.so:libOpenSLES.so:libRS.so:libstdc++.so:libsync.so:libvulkan.so:libwebviewchromium_plat_support.so:libz.so
+05-09 23:43:34.280 10583 10583 D nativeloader: Load libicu_jni.so using APEX ns com_android_art for caller /apex/com.android.art/javalib/core-oj.jar: ok
+05-09 23:43:34.280 10583 10583 D app_process: u_setTimeZoneFilesDirectory("/apex/com.android.tzdata/etc/tz/versioned/9/icu") succeeded. 
+05-09 23:43:34.281 10583 10583 D app_process: I18n APEX ICU file found: /apex/com.android.i18n/etc/icu/icudt76l.dat
+05-09 23:43:34.283 10583 10583 D nativeloader: Load libjavacore.so using APEX ns com_android_art for caller /apex/com.android.art/javalib/core-oj.jar: ok
+05-09 23:43:34.284 10583 10583 D nativeloader: Load libopenjdk.so using APEX ns com_android_art for caller /apex/com.android.art/javalib/core-oj.jar: ok
+05-09 23:43:34.286 10583 10583 I app_process: Priority-to-niceness mapping: 19, 16, 13, 10, 0, -2, -4, -5, -6, -8
+05-09 23:43:34.304 10583 10583 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+05-09 23:43:34.304 10583 10583 D AndroidRuntime: Calling main entry com.android.commands.monkey.Monkey
+05-09 23:43:34.305 10583 10583 D nativeloader: Load /system/lib64/libmonkey_jni.so using ns default for caller /system/framework/monkey.jar in same partition (is_bridged=0): ok
+05-09 23:43:34.305 10583 10583 W Monkey  : args: [-p, com.example.domo, -c, android.intent.category.LAUNCHER, 1]
+05-09 23:43:34.310 10583 10583 I AconfigPackage: android.media.swcodec.flags is mapped to com.android.media.swcodec
+05-09 23:43:34.310 10583 10583 I AconfigPackage: com.android.permission.flags is mapped to com.android.permission
+05-09 23:43:34.310 10583 10583 I AconfigPackage: com.android.permissioncontroller.flags is mapped to com.android.permission
+05-09 23:43:34.311 10583 10583 I AconfigPackage: com.android.icu is mapped to com.android.i18n
+05-09 23:43:34.311 10583 10583 I AconfigPackage: com.android.appsearch.flags is mapped to com.android.appsearch
+05-09 23:43:34.312 10583 10583 I AconfigPackage: android.uprobestats.mainline.flags is mapped to com.android.uprobestats
+05-09 23:43:34.312 10583 10583 I AconfigPackage: com.android.crashrecovery.flags is mapped to com.android.crashrecovery
+05-09 23:43:34.312 10583 10583 I AconfigPackage: android.provider.flags is mapped to com.android.configinfrastructure
+05-09 23:43:34.312 10583 10583 I AconfigPackage: com.android.server.deviceconfig is mapped to com.android.configinfrastructure
+05-09 23:43:34.313 10583 10583 I AconfigPackage: com.android.art.flags is mapped to com.android.art
+05-09 23:43:34.313 10583 10583 I AconfigPackage: com.android.art.rw.flags is mapped to com.android.art
+05-09 23:43:34.313 10583 10583 I AconfigPackage: com.android.libcore is mapped to com.android.art
+05-09 23:43:34.313 10583 10583 I AconfigPackage: com.android.telephony.flags is mapped to com.android.telephonycore
+05-09 23:43:34.314 10583 10583 I AconfigPackage: com.android.media.extractor.flags is mapped to com.android.media
+05-09 23:43:34.314 10583 10583 I AconfigPackage: com.android.media.mainline.flags is mapped to com.android.media
+05-09 23:43:34.314 10583 10583 I AconfigPackage: com.android.wifi.flags is mapped to com.android.wifi
+05-09 23:43:34.314 10583 10583 I AconfigPackage: com.android.org.conscrypt.flags is mapped to com.android.conscrypt
+05-09 23:43:34.314 10583 10583 I AconfigPackage: com.android.org.conscrypt.net.flags is mapped to com.android.conscrypt
+05-09 23:43:34.314 10583 10583 I AconfigPackage: com.android.healthfitness.flags is mapped to com.android.healthfitness
+05-09 23:43:34.315 10583 10583 I AconfigPackage: com.android.ipsec.flags is mapped to com.android.ipsec
+05-09 23:43:34.315 10583 10583 I AconfigPackage: com.android.nfc.module.flags is mapped to com.android.nfcservices
+05-09 23:43:34.316 10583 10583 I AconfigPackage: com.android.adservices.ondevicepersonalization.flags is mapped to com.android.ondevicepersonalization
+05-09 23:43:34.316 10583 10583 I AconfigPackage: com.android.adbd.flags is mapped to com.android.adbd
+05-09 23:43:34.316 10583 10583 I AconfigPackage: com.android.bluetooth.flags is mapped to com.android.bt
+05-09 23:43:34.317 10583 10583 I AconfigPackage: com.android.devicelock.flags is mapped to com.android.devicelock
+05-09 23:43:34.317 10583 10583 I AconfigPackage: android.os.profiling is mapped to com.android.profiling
+05-09 23:43:34.317 10583 10583 I AconfigPackage: android.os.profiling.anomaly.flags is mapped to com.android.profiling
+05-09 23:43:34.317 10583 10583 I AconfigPackage: com.android.os.statsd.flags is mapped to com.android.os.statsd
+05-09 23:43:34.317 10583 10583 I AconfigPackage: com.android.rkpd.flags is mapped to com.android.rkpd
+05-09 23:43:34.317 10583 10583 I AconfigPackage: com.android.cellbroadcastreceiver.flags is mapped to com.android.cellbroadcast
+05-09 23:43:34.318 10583 10583 I AconfigPackage: com.android.adservices.flags is mapped to com.android.adservices
+05-09 23:43:34.318 10583 10583 I AconfigPackage: com.android.sdksandbox.flags is mapped to com.android.adservices
+05-09 23:43:34.318 10583 10583 I AconfigPackage: com.android.uwb.flags is mapped to com.android.uwb
+05-09 23:43:34.318 10583 10583 I AconfigPackage: com.android.ranging.flags is mapped to com.android.uwb
+05-09 23:43:34.318 10583 10583 I AconfigPackage: android.graphics.pdf.flags is mapped to com.android.mediaprovider
+05-09 23:43:34.318 10583 10583 I AconfigPackage: com.android.providers.media.flags is mapped to com.android.mediaprovider
+05-09 23:43:34.318 10583 10583 I AconfigPackage: android.graphics.pdf.flags.readonly is mapped to com.android.mediaprovider
+05-09 23:43:34.319 10583 10583 I AconfigPackage: com.android.tethering.mainline.beta is mapped to com.android.tethering
+05-09 23:43:34.319 10583 10583 I AconfigPackage: android.net.http is mapped to com.android.tethering
+05-09 23:43:34.319 10583 10583 I AconfigPackage: com.android.tethering.readonly.flags is mapped to com.android.tethering
+05-09 23:43:34.319 10583 10583 I AconfigPackage: android.net.vcn is mapped to com.android.tethering
+05-09 23:43:34.319 10583 10583 I AconfigPackage: com.android.net.flags is mapped to com.android.tethering
+05-09 23:43:34.319 10583 10583 I AconfigPackage: com.android.tethering.beta.test is mapped to com.android.tethering
+05-09 23:43:34.319 10583 10583 I AconfigPackage: com.android.nearby.flags is mapped to com.android.tethering
+05-09 23:43:34.319 10583 10583 I AconfigPackage: com.android.net.ct.flags is mapped to com.android.tethering
+05-09 23:43:34.319 10583 10583 I AconfigPackage: com.android.net.thread.flags is mapped to com.android.tethering
+05-09 23:43:34.319 10583 10583 I AconfigPackage: com.android.system.virtualmachine.flags is mapped to com.android.virt
+05-09 23:43:34.319 10583 10583 E FeatureFlagsImplExport: android.os.flagging.AconfigStorageReadException: ERROR_PACKAGE_NOT_FOUND: package android.xr cannot be found on the device
+05-09 23:43:34.322 10583 10583 W Monkey  :  arg: "-p"
+05-09 23:43:34.323  1800  1952 D EventHub: No input device configuration file found for device 'Monkey touch'.
+05-09 23:43:34.323  1800  1952 I EventHub: usingClockIoctl=true
+05-09 23:43:34.323  1800  1952 I EventHub: New device: id=15, fd=616, path='/dev/input/event13', name='Monkey touch', classes=TOUCH | TOUCH_MT, configuration='', keyLayout='', keyCharacterMap='', builtinKeyboard=false, 
+05-09 23:43:34.327  1800  1952 I InputReader: Device reconfigured: id=15, name='Monkey touch', size 1080x2400, orientation Rotation0, mode DIRECT, display id 0
+05-09 23:43:34.327  1800  1952 I InputReader: Device added: id=15, eventHubId=15, name='Monkey touch', descriptor='e1fe28b90f915c7d1febbd52c1ef84b3c4cbed9f',sources=TOUCHSCREEN
+05-09 23:43:34.329 10583 10583 W Monkey  :  arg: "com.example.domo"
+05-09 23:43:34.337  1800  1822 D WindowManager: Direct invocation of sendNewConfiguration: Display{#0 state=ON size=1080x2400 ROTATION_0}
+05-09 23:43:34.338 10583 10583 W Monkey  :  arg: "-c"
+05-09 23:43:34.338 10583 10583 W Monkey  :  arg: "android.intent.category.LAUNCHER"
+05-09 23:43:34.338 10583 10583 W Monkey  :  arg: "1"
+05-09 23:43:34.338 10583 10583 W Monkey  : data="com.example.domo"
+05-09 23:43:34.339 10583 10583 W Monkey  : data="android.intent.category.LAUNCHER"
+05-09 23:43:34.341  2094  2147 V ShellDesktopMode: DesktopDisplayModeController: canDesktopFirstModeBeEnabledOnDefaultDisplay: isDefaultDisplayDesktopEligible=false
+05-09 23:43:34.341  1800  1822 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+05-09 23:43:34.342  1800  1822 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+05-09 23:43:34.342  1800  1822 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+05-09 23:43:34.345  9238  9238 I PkDeviceHelper: PkDeviceHelper.refreshDevices():87 refreshing devices
+05-09 23:43:34.345  9238  9238 I PkDeviceHelper: PkDeviceHelper.addDevice():125 device qwerty2 added
+05-09 23:43:34.357  1800  2716 W ActivityManager: registerReceiverWithFeature: no app for null
+05-09 23:43:34.360  1800  2060 W ActivityTaskManager: callingPackage for (uid=2000, pid=10583) has no WPC
+05-09 23:43:34.360  1800  2060 V WindowManager: DesktopModeLaunchParamsModifier: phase= 0 task=null activity=null display-area-from-current-params=null display-area-from-default-fallback=DefaultTaskDisplayArea@12308373 display-id=0 task-display-area-windowing-mode=1 suggested-display-area=DefaultTaskDisplayArea@12308373 task null, skipping
+05-09 23:43:34.360  1800  2060 V WindowManager: TaskLaunchParamsModifier:phase=0 task=null activity=null display-area-from-current-params=null display-area-from-default-fallback=DefaultTaskDisplayArea@12308373 display-id=0 task-display-area-windowing-mode=1 suggested-display-area=DefaultTaskDisplayArea@12308373
+05-09 23:43:34.361  1800  2060 V GrammaticalInflectionUtils: AttributionSource: android.content.AttributionSource@d240c2e6 does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+05-09 23:43:34.361  1800  2060 V WindowManager: DesktopModeLaunchParamsModifier: phase= 0 task=null activity=ActivityRecord{227410194 u0 com.example.domo/.MainActivity display-area-from-current-params=null display-area-from-default-fallback=DefaultTaskDisplayArea@12308373 display-id=0 task-display-area-windowing-mode=1 suggested-display-area=DefaultTaskDisplayArea@12308373 task null, skipping
+05-09 23:43:34.361  1800  2060 V WindowManager: TaskLaunchParamsModifier:phase=0 task=null activity=ActivityRecord{227410194 u0 com.example.domo/.MainActivity t-1} display-area-from-current-params=null display-area-from-default-fallback=DefaultTaskDisplayArea@12308373 display-id=0 task-display-area-windowing-mode=1 suggested-display-area=DefaultTaskDisplayArea@12308373
+05-09 23:43:34.361  1800  2060 V WindowManager: DesktopModeLaunchParamsModifier: phase= 3 task=null activity=ActivityRecord{227410194 u0 com.example.domo/.MainActivity t-1} display-area-from-current-params=null display-area-from-default-fallback=DefaultTaskDisplayArea@12308373 display-id=0 task-display-area-windowing-mode=1 suggested-display-area=DefaultTaskDisplayArea@12308373 task null, skipping
+05-09 23:43:34.361  1800  2060 V WindowManager: TaskLaunchParamsModifier:phase=3 task=null activity=ActivityRecord{227410194 u0 com.example.domo/.MainActivity t-1} display-area-from-current-params=null display-area-from-default-fallback=DefaultTaskDisplayArea@12308373 display-id=0 task-display-area-windowing-mode=1 suggested-display-area=DefaultTaskDisplayArea@12308373 non-freeform-task-display-area display-area=DefaultTaskDisplayArea@12308373 skip-bounds-fullscreen
+05-09 23:43:34.367  1800  2060 V WindowManager: DesktopModeLaunchParamsModifier: phase= 3 task=Task{fb620e3 #133 type=standard A=10230:com.example.domo} activity=ActivityRecord{227410194 u0 com.example.domo/.MainActivity t-1} display-from-task=0 display-id=0 task-display-area-windowing-mode=1 suggested-display-area=DefaultTaskDisplayArea@12308373 not entering desktop mode, skipping
+05-09 23:43:34.367  1800  2060 V WindowManager: TaskLaunchParamsModifier:phase=3 task=Task{fb620e3 #133 type=standard A=10230:com.example.domo} activity=ActivityRecord{227410194 u0 com.example.domo/.MainActivity t-1} display-from-task=0 display-id=0 task-display-area-windowing-mode=1 suggested-display-area=DefaultTaskDisplayArea@12308373 inherit-from-task=fullscreen non-freeform-task-display-area display-area=DefaultTaskDisplayArea@12308373 skip-bounds-fullscreen
+05-09 23:43:34.369  1800  2716 D CompatChangeReporter: Compat change id reported: 377864165; UID 10230; state: ENABLED
+05-09 23:43:34.373  1800  2060 I ActivityTaskManager: START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.example.domo/.MainActivity} with LAUNCH_SINGLE_TASK from uid 2000 (com.android.shell) (BAL_ALLOW_PERMISSION) result code=0
+05-09 23:43:34.405  1800  1822 V GrammaticalInflectionUtils: AttributionSource: android.content.AttributionSource@d240c2e6 does not have READ_SYSTEM_GRAMMATICAL_GENDER permission.
+05-09 23:43:34.409 10583 10583 I Monkey  : Events injected: 1
+05-09 23:43:34.409  2246  2246 D BaseActivity: Launcher flags updated: [state_started|state_resumed|state_deferred_resumed|state_window_focused] -[state_user_active]
+05-09 23:43:34.410  2246  2246 D BaseActivity: Launcher flags updated: [state_started|state_window_focused] -[state_resumed|state_deferred_resumed]
+05-09 23:43:34.410  2246  2246 W SplitSelectStateCtor: Missing session instanceIds
+05-09 23:43:34.410  2246  2246 D StatsLog: LAUNCHER_SPLIT_SELECTION_EXIT_INTERRUPTED
+05-09 23:43:34.413  2094  2147 D WindowManagerShell: setLauncherKeepClearAreaHeight: visible=false, height=495
+05-09 23:43:34.414  2094  2147 V WindowManagerShell: Transition requested (#104): android.os.BinderProxy@6c5e20e TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=133 effectiveUid=10230 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.example.domo/.MainActivity } baseActivity=ComponentInfo{com.example.domo/com.example.domo.MainActivity} topActivity=ComponentInfo{com.example.domo/com.example.domo.MainActivity} origActivity=null realActivity=ComponentInfo{com.example.domo/com.example.domo.MainActivity} numActivities=1 lastActiveTime=981279 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.os.BinderProxy@1f5b42f} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 0 - 0, 0) topActivityInfo=ActivityInfo{dde3a3c com.example.domo.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isTopActivityNoDisplay=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false isActivityStackTransparent=false lastNonFullscreenBounds=null capturedLink=null capturedLinkTimestamp=0 requestedVisibleTypes=503 topActivityRequestOpenInBrowserEducationTimestamp=0 appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false isLeafTask= true eligibleForLetterboxEducation= false isLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false eligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 topActivityAppBounds=Rect(0, 0 - 1080, 2400) isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false hasMinAspectRatioOverride=false topActivityLetterboxBounds=null cameraCompatTaskInfo=CameraCompatTaskInfo { cameraCompatMode=undefinedundefined} topNonResizableActivityAspectRatio=-1.0} topActivityMainWindowFrame=null isAppBubble=false}, pipChange = null, remoteTransition = null, displayChange = null, requestedLocation = null, userChange = null, windowingLayerChange = null, flags = 0, debugId = 104 }
+05-09 23:43:34.421  2094  2147 D ShellSplitScreen: logExit: no-op, mLoggerSessionId is null
+05-09 23:43:34.423  2094  2147 V ShellDesktopMode: DesktopTasksController: handleRequest request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=133 effectiveUid=10230 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.example.domo/.MainActivity } baseActivity=ComponentInfo{com.example.domo/com.example.domo.MainActivity} topActivity=ComponentInfo{com.example.domo/com.example.domo.MainActivity} origActivity=null realActivity=ComponentInfo{com.example.domo/com.example.domo.MainActivity} numActivities=1 lastActiveTime=981279 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.os.BinderProxy@1f5b42f} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 0 - 0, 0) topActivityInfo=ActivityInfo{dde3a3c com.example.domo.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isTopActivityNoDisplay=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false isActivityStackTransparent=false lastNonFullscreenBounds=null capturedLink=null capturedLinkTimestamp=0 requestedVisibleTypes=503 topActivityRequestOpenInBrowserEducationTimestamp=0 appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false isLeafTask= true eligibleForLetterboxEducation= false isLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false eligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 topActivityAppBounds=Rect(0, 0 - 1080, 2400) isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false hasMinAspectRatioOverride=false topActivityLetterboxBounds=null cameraCompatTaskInfo=CameraCompatTaskInfo { cameraCompatMode=undefinedundefined} topNonResizableActivityAspectRatio=-1.0} topActivityMainWindowFrame=null isAppBubble=false}, pipChange = null, remoteTransition = null, displayChange = null, requestedLocation = null, userChange = null, windowingLayerChange = null, flags = 0, debugId = 104 }
+05-09 23:43:34.423  2094  2147 V ShellDesktopMode: DesktopTasksController: skipping handleRequest reason=triggerTask's display doesn't support desktop mode
+05-09 23:43:34.424  1800  2524 I AppsFilter: interaction: PackageSetting{217f2ca com.example.app/10224} -> PackageSetting{9e4a06a com.example.domo/10230} BLOCKED
+05-09 23:43:34.425  1731  1731 D Zygote  : Forked child process 10594
+05-09 23:43:34.426  1800  2524 I AppsFilter: interaction: PackageSetting{f902f58 com.example.app_buracos/10225} -> PackageSetting{9e4a06a com.example.domo/10230} BLOCKED
+05-09 23:43:34.426  1800  2038 D BackgroundInstallControlService: Package event received: 0
+05-09 23:43:34.430  1800  2524 V WindowManager: Defer transition id=104 for TaskFragmentTransaction=android.os.Binder@418e30d
+05-09 23:43:34.431  1800  2524 V WindowManager: deferTransitionReady deferReadyDepth=1 stack=com.android.server.wm.TransitionController.deferTransitionReady:1061 com.android.server.wm.TaskFragmentOrganizerController$TaskFragmentOrganizerState.dispatchTransaction:517 com.android.server.wm.TaskFragmentOrganizerController.dispatchPendingEvents:1259 com.android.server.wm.TaskFragmentOrganizerController.dispatchPendingEvents:1228 com.android.server.wm.RootWindowContainer.performSurfacePlacement:777 
+05-09 23:43:34.432  2246  2246 D RecentsView: onTaskDisplayChanged: 133, new displayId = 0
+05-09 23:43:34.432  2246  2246 D RecentsView: onTaskDisplayChanged: 133, new displayId = 0
+05-09 23:43:34.432  2246  2246 D b/417220811: invalidateLoadedTasks - previous requestLoadId: -1
+05-09 23:43:34.432   537   648 I libbinder.BpBinder: onLastStrongRef automatically unlinking death recipients for descriptor: '(not cached)'
+05-09 23:43:34.435 10594 10594 I Zygote  : Process 10594 created for com.example.domo
+05-09 23:43:34.436  1800  1884 I ActivityManager: Start proc 10594:com.example.domo/u0a230 for next-top-activity {com.example.domo/com.example.domo.MainActivity}
+05-09 23:43:34.437 10594 10594 I om.example.domo: Late-enabling -Xcheck:jni
+05-09 23:43:34.438  1800  2321 V WindowManager: Continue transition id=104 for TaskFragmentTransaction=android.os.Binder@418e30d
+05-09 23:43:34.438  1800  2321 V WindowManager: continueTransitionReady deferReadyDepth=0 stack=com.android.server.wm.TransitionController.continueTransitionReady:1071 com.android.server.wm.TaskFragmentOrganizerController$TaskFragmentOrganizerState.onTransactionFinished:546 com.android.server.wm.TaskFragmentOrganizerController.onTransactionHandled:740 android.window.ITaskFragmentOrganizerController$Stub.onTransact:225 android.os.Binder.execTransactInternal:1473 
+05-09 23:43:34.439  2094  2147 D ShellDesktopMode: DesktopRepository: Removes freeform task: taskId=132
+05-09 23:43:34.441 10583 10583 I Monkey  : ## Network stats: elapsed time=81ms (0ms mobile, 0ms wifi, 81ms not connected)
+05-09 23:43:34.442 10583 10583 I app_process: System.exit called, status: 0
+05-09 23:43:34.442 10583 10583 I AndroidRuntime: VM exiting with result code 0.
+05-09 23:43:34.467  2094  2147 W ShellDesktopMode: DesktopRepository: No display id found for task: taskId=132
+05-09 23:43:34.473 10594 10594 I om.example.domo: Using CollectorTypeCMC GC.
+05-09 23:43:34.476  1800  1952 I EventHub: Removing device Monkey touch due to epoll hang-up event.
+05-09 23:43:34.476  1800  1952 I EventHub: Removed device: path=/dev/input/event13 name=Monkey touch id=15 fd=616 classes=TOUCH | TOUCH_MT
+05-09 23:43:34.478  1800  1952 I InputReader: Device removed: id=15, eventHubId=15, name='Monkey touch', descriptor='e1fe28b90f915c7d1febbd52c1ef84b3c4cbed9f', sources=TOUCHSCREEN
+05-09 23:43:34.483  1800  1952 I EventHub: Removing device '/dev/input/event13' due to inotify event
+05-09 23:43:34.488  2246  2246 D BaseActivity: Launcher flags updated: [state_started] -[state_window_focused]
+05-09 23:43:34.489   540   561 I adbd    : jdwp connection from 10594
+05-09 23:43:34.495  1735  7192 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+05-09 23:43:34.495  1735  7192 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+05-09 23:43:34.495  1735  7192 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+05-09 23:43:34.495  1800  1822 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+05-09 23:43:34.495  1800  1822 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+05-09 23:43:34.495  1800  1822 W libbinder.IPCThreadState: Sending oneway calls to frozen process.
+05-09 23:43:34.502  2094  2147 V ShellDesktopMode: DesktopDisplayModeController: canDesktopFirstModeBeEnabledOnDefaultDisplay: isDefaultDisplayDesktopEligible=false
+05-09 23:43:34.515  9238  9238 I PkDeviceHelper: PkDeviceHelper.refreshDevices():87 refreshing devices
+05-09 23:43:34.515  9238  9238 I PkDeviceHelper: PkDeviceHelper.addDevice():125 device qwerty2 added
+05-09 23:43:34.520  2246  2246 D b/417220811: invalidateLoadedTasks - previous requestLoadId: -1
+05-09 23:43:34.521  1800  1819 V WindowManager: Sent Transition (#104) createdAt=05-09 23:43:34.361 via request=TransitionRequestInfo { type = OPEN, triggerTask = TaskInfo{userId=0 taskId=133 effectiveUid=10230 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.example.domo/.MainActivity } baseActivity=ComponentInfo{com.example.domo/com.example.domo.MainActivity} topActivity=ComponentInfo{com.example.domo/com.example.domo.MainActivity} origActivity=null realActivity=ComponentInfo{com.example.domo/com.example.domo.MainActivity} numActivities=1 lastActiveTime=981279 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{2937be6 Task{fb620e3 #133 type=standard A=10230:com.example.domo}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 0 - 0, 0) topActivityInfo=ActivityInfo{2700527 com.example.domo.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=false isVisible=false isVisibleRequested=false isTopActivityNoDisplay=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false isActivityStackTransparent=false lastNonFullscreenBounds=null capturedLink=null capturedLinkTimestamp=0 requestedVisibleTypes=503 topActivityRequestOpenInBrowserEducationTimestamp=0 appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false isLeafTask= true eligibleForLetterboxEducation= false isLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false eligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 topActivityAppBounds=Rect(0, 0 - 1080, 2400) isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false hasMinAspectRatioOverride=false topActivityLetterboxBounds=null cameraCompatTaskInfo=CameraCompatTaskInfo { cameraCompatMode=undefinedundefined} topNonResizableActivityAspectRatio=-1.0} topActivityMainWindowFrame=null isAppBubble=false}, pipChange = null, remoteTransition = null, displayChange = null, requestedLocation = null, userChange = null, windowingLayerChange = null, flags = 0, debugId = 104 }
+05-09 23:43:34.521  1800  1819 V WindowManager:     startWCT=WindowContainerTransaction { changes= {} hops= [] errorCallbackToken=null taskFragmentOrganizer=null }
+05-09 23:43:34.521  1800  1819 V WindowManager:     info={id=104 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[
+05-09 23:43:34.521  1800  1819 V WindowManager:         {WCT{RemoteToken{2937be6 Task{fb620e3 #133 type=standard A=10230:com.example.domo}}} m=OPEN f=NONE leash=Surface(name=Task=133#722)/@0xf5a7d28 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0 taskParent=-1 winMode=1 userId=0},
+05-09 23:43:34.521  1800  1819 V WindowManager:         {WCT{RemoteToken{2c8f642 Task{e257273 #115 type=home}}} m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=115#249)/@0x494d451 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0 taskParent=-1 winMode=1 userId=0},
+05-09 23:43:34.521  1800  1819 V WindowManager:         {m=TO_BACK f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{d5395ea}#155)/@0xdf4f03e sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0}
+05-09 23:43:34.521  1800  1819 V WindowManager:     ]}
+05-09 23:43:34.523  2094  8313 V WindowManagerShell: onTransitionReady(transaction=7730941138516)
+05-09 23:43:34.523  1800  1822 W PermissionService: getPermissionFlags: Unknown user -1
+05-09 23:43:34.523  1800  1822 W PermissionService: getPermissionFlags: Unknown user -1
+05-09 23:43:34.537  2094  2147 V WindowManagerShell: onTransitionReady (#104) android.os.BinderProxy@6c5e20e: {id=104 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[
+05-09 23:43:34.537  2094  2147 V WindowManagerShell:         {m=OPEN f=NONE leash=Surface(name=Task=133#722)/@0x8b9a972 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0 taskParent=-1 winMode=1 userId=0},
+05-09 23:43:34.537  2094  2147 V WindowManagerShell:         {m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=115#249)/@0x8da11c3 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0 taskParent=-1 winMode=1 userId=0},
+05-09 23:43:34.537  2094  2147 V WindowManagerShell:         {m=TO_BACK f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{d5395ea}#155)/@0x6152a40 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0}
+05-09 23:43:34.537  2094  2147 V WindowManagerShell:     ]}
+05-09 23:43:34.537  2094  2147 V WindowManagerShell: Playing animation for (#104) android.os.BinderProxy@6c5e20e@0
+05-09 23:43:34.538  2094  2147 V ShellRecents: RecentsTransitionHandler.startAnimation: no controller found
+05-09 23:43:34.538  2094  2147 V ShellDesktopMode: DesktopMixedTransitionHandler: No pending desktop transition
+05-09 23:43:34.538  2094  2147 V WindowManagerShell: Transition doesn't have explicit remote, search filters for match for {id=104 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{m=OPEN f=NONE leash=Surface(name=Task=133#722)/@0x8b9a972 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0 taskParent=-1 winMode=1 userId=0},{m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=115#249)/@0x8da11c3 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0 taskParent=-1 winMode=1 userId=0},{m=TO_BACK f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{d5395ea}#155)/@0x6152a40 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0}]}
+05-09 23:43:34.538  2094  2147 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=undefined independent=true modes=[CLOSE,TO_BACK] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=null launchCookie=null taskFragmentToken=android.os.BinderProxy@749e7bd windowingMode=undefined isCrossDisplayMove=false}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@84171b2, appThread = android.app.IApplicationThread$Stub$Proxy@62dd503, debugName = overlayBackTransition }}
+05-09 23:43:34.538  2094  2147 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=dream independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined isCrossDisplayMove=false},{atype=home independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined isCrossDisplayMove=false}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@bbccc80, appThread = android.app.IApplicationThread$Stub$Proxy@b242b9, debugName = LauncherToDream }}
+05-09 23:43:34.538  2094  2147 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null windowingMode=undefined isCrossDisplayMove=false},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined isCrossDisplayMove=false},{NOT atype=undefined independent=true modes=[] flags=NONE mustBeTask=true order=ANY topActivity=null launchCookie=null customAnim=true windowingMode=undefined isCrossDisplayMove=false}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@50f6fe, appThread = android.app.IApplicationThread$Stub$Proxy@42ebe5f, debugName = QuickstepLaunchHome }}
+05-09 23:43:34.538  2094  2147 V WindowManagerShell:  Checking filter Pair{{types=[OPEN,TO_FRONT] flags=0x0] notFlags=0x0 checks=[{atype=standard independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=true order=ANY topActivity=null launchCookie=null windowingMode=freeform isCrossDisplayMove=false}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@b69eb9f, appThread = null, debugName = DesktopWindowLimitUnminimize }}
+05-09 23:43:34.538  2094  2147 V WindowManagerShell:  Delegate animation for (#104) to null
+05-09 23:43:34.538  2094  2147 V WindowManagerShell: start default transition animation, info = {id=104 t=OPEN f=0x0 trk=0 r=[0@Point(0, 0)] c=[{m=OPEN f=NONE leash=Surface(name=Task=133#722)/@0x8b9a972 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0 taskParent=-1 winMode=1 userId=0},{m=TO_BACK f=SHOW_WALLPAPER leash=Surface(name=Task=115#249)/@0x8da11c3 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0 taskParent=-1 winMode=1 userId=0},{m=TO_BACK f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{d5395ea}#155)/@0x6152a40 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0}]}
+05-09 23:43:34.538  2094  2147 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@b42aa6c animAttr=0x13 type=OPEN isEntrance=false
+05-09 23:43:34.539  2094  2147 V WindowManagerShell: loadAnimation: anim=android.view.animation.AnimationSet@ee60158 animAttr=0x12 type=OPEN isEntrance=true
+05-09 23:43:34.540  2094  2147 V WindowManagerShell:  animated by com.android.wm.shell.transition.DefaultTransitionHandler@347af97
+05-09 23:43:34.540  2094  2147 V ShellTaskOrganizer: Task appeared taskId=133 listener=FullscreenTaskListener
+05-09 23:43:34.545  2094  2147 V ShellTaskOrganizer: Fullscreen Task Appeared: #133
+05-09 23:43:34.548 10594 10594 D nativeloader: Load libframework-connectivity-tiramisu-jni.so using APEX ns com_android_tethering for caller /apex/com.android.tethering/javalib/framework-connectivity-t.jar: ok
+05-09 23:43:34.549  2246  2246 D b/417220811: invalidateLoadedTasks - previous requestLoadId: -1
+05-09 23:43:34.549  2246  2246 D b/417220811: invalidateLoadedTasks - previous requestLoadId: -1
+05-09 23:43:34.560  1800  2038 D BackgroundInstallControlService: Package event received: 0
+05-09 23:43:34.565  2094  2094 D NavigationModeController: getCurrentUserContext: contextUser=0 currentUser=0
+05-09 23:43:34.590   490   526 I RanchuHwc: logCompositionFallbackIfChanged: layer 111 CompositionType fallback from 2 to 1
+05-09 23:43:34.699 10594 10594 D nativeloader: Configuring clns-9 for other apk /data/app/~~etjmUhguzKa_Z2qTw1Yz7w==/com.example.domo-mb5CgFvrz12XttMc4x-lDg==/base.apk. target_sdk_version=36, uses_libraries=, library_path=/data/app/~~etjmUhguzKa_Z2qTw1Yz7w==/com.example.domo-mb5CgFvrz12XttMc4x-lDg==/lib/arm64:/data/app/~~etjmUhguzKa_Z2qTw1Yz7w==/com.example.domo-mb5CgFvrz12XttMc4x-lDg==/base.apk!/lib/arm64-v8a, permitted_path=/data:/mnt/expand:/data/user/0/com.example.domo
+05-09 23:43:34.704 10594 10594 V GraphicsEnvironment: Currently set values for:
+05-09 23:43:34.704 10594 10594 V GraphicsEnvironment:   angle_gl_driver_selection_pkgs=[]
+05-09 23:43:34.704 10594 10594 V GraphicsEnvironment:   angle_gl_driver_selection_values=[]
+05-09 23:43:34.704 10594 10594 V GraphicsEnvironment: com.example.domo is not listed in per-application setting
+05-09 23:43:34.704 10594 10594 V GraphicsEnvironment: ANGLE allowlist from config: com.dreamgames.royalmatch com.dts.freefiremax com.dxx.firenow com.gramgames.mergedragons com.ludo.king com.mojang.minecraftpe com.my.defense com.nintendo.zaka com.os.airforce com.playrix.fishdomdd.gplay io.teslatech.callbreak jp.konami.prospia net.peakgames.toonblast
+05-09 23:43:34.704 10594 10594 V GraphicsEnvironment: No special selections for ANGLE, returning default driver choice
+05-09 23:43:34.704 10594 10594 V GraphicsEnvironment: Neither updatable production driver nor prerelease driver is supported.
+05-09 23:43:34.718  1800  2038 D BackgroundInstallControlService: Package event received: 0
+05-09 23:43:34.718 10594 10614 I DisplayManager: Choreographer implicitly registered for the refresh rate.
+05-09 23:43:34.720  1800  2038 D BackgroundInstallControlService: Package event received: 0
+05-09 23:43:34.721 10594 10594 D DesktopExperienceFlags: Toggle override initialized to: false
+05-09 23:43:34.723 10594 10594 E ashmem  : Pinning is deprecated since Android Q. Please use trim or other methods.
+05-09 23:43:34.735  5167  5459 W AiAiEcho: LyftNotificationParser Ridesharing ETA not enabled
+05-09 23:43:34.735  5167  5459 I AiAiEcho: SmartspaceNotificationPredictor no parser can handle this notification or notification is invalid
+05-09 23:43:34.738 10594 10594 D CompatChangeReporter: Compat change id reported: 377864165; UID 10230; state: ENABLED
+05-09 23:43:34.738 10594 10594 D DesktopModeFlags: Toggle override initialized to: OVERRIDE_UNSET
+05-09 23:43:34.776 10594 10594 W HWUI    : Unknown dataspace 0
+05-09 23:43:34.786 10594 10614 I GFXSTREAM: [eglDisplay.cpp(297)] Opening libGLESv1_CM_emulation.so
+05-09 23:43:34.786 10594 10614 I GFXSTREAM: [eglDisplay.cpp(297)] Opening libGLESv2_emulation.so
+05-09 23:43:34.788 10594 10614 W HWUI    : Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+05-09 23:43:34.788 10594 10614 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+05-09 23:43:34.797 10594 10594 D WindowOnBackDispatcher: setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@bda77ab
+05-09 23:43:34.798  1800  2716 D CoreBackPreview: Window{cedbf2b u0 com.example.domo/com.example.domo.MainActivity}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.IOnBackInvokedCallback$Stub$Proxy@b7ee546, mPriority=-1, mIsAnimationCallback=false, mOverrideBehavior=0}
+05-09 23:43:34.848 10594 10594 D AndroidRuntime: Shutting down VM
+--------- beginning of crash
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: FATAL EXCEPTION: main
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: Process: com.example.domo, PID: 10594
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: java.lang.NoClassDefFoundError: Failed resolution of: Lcom/example/domo/ui/home/HomeLauncherScreenKt;
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at com.example.domo.ComposableSingletons$MainActivityKt.lambda_363023061$lambda$0(MainActivity.kt:16)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at com.example.domo.ComposableSingletons$MainActivityKt$$ExternalSyntheticLambda0.invoke(D8$$SyntheticClass:0)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:109)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:35)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.runtime.CompositionLocalKt.CompositionLocalProvider(CompositionLocal.kt:401)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.material3.TextKt.ProvideTextStyle(Text.kt:349)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.material3.MaterialThemeKt$MaterialTheme$1.invoke(MaterialTheme.kt:69)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.material3.MaterialThemeKt$MaterialTheme$1.invoke(MaterialTheme.kt:68)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:109)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:35)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.runtime.CompositionLocalKt.CompositionLocalProvider(CompositionLocal.kt:380)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.material3.MaterialThemeKt.MaterialTheme(MaterialTheme.kt:60)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at com.example.domo.ui.theme.ThemeKt.DomoTheme(Theme.kt:27)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at com.example.domo.ComposableSingletons$MainActivityKt.lambda_843215076$lambda$1(MainActivity.kt:15)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at com.example.domo.ComposableSingletons$MainActivityKt$$ExternalSyntheticLambda1.invoke(D8$$SyntheticClass:0)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:109)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:35)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.ui.platform.ComposeView.Content(ComposeView.android.kt:441)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.ui.platform.AbstractComposeView$ensureCompositionCreated$1.invoke(ComposeView.android.kt:259)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.ui.platform.AbstractComposeView$ensureCompositionCreated$1.invoke(ComposeView.android.kt:258)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:109)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:35)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.runtime.CompositionLocalKt.CompositionLocalProvider(CompositionLocal.kt:380)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.ui.platform.CompositionLocalsKt.ProvideCommonCompositionLocals(CompositionLocals.kt:216)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.ui.platform.AndroidCompositionLocals_androidKt$ProvideAndroidCompositionLocals$3.invoke(AndroidCompositionLocals.android.kt:132)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.ui.platform.AndroidCompositionLocals_androidKt$ProvideAndroidCompositionLocals$3.invoke(AndroidCompositionLocals.android.kt:131)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:109)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:35)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.runtime.CompositionLocalKt.CompositionLocalProvider(CompositionLocal.kt:380)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.ui.platform.AndroidCompositionLocals_androidKt.ProvideAndroidCompositionLocals(AndroidCompositionLocals.android.kt:121)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.ui.platform.WrappedComposition$setContent$1$1$3.invoke(Wrapper.android.kt:155)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.ui.platform.WrappedComposition$setContent$1$1$3.invoke(Wrapper.android.kt:154)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:109)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:35)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.runtime.CompositionLocalKt.CompositionLocalProvider(CompositionLocal.kt:401)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.ui.platform.WrappedComposition$setContent$1$1.invoke(Wrapper.android.kt:154)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.ui.platform.WrappedComposition$setContent$1$1.invoke(Wrapper.android.kt:133)
+05-09 23:43:34.849 10594 10594 E AndroidRuntime: 	at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:109)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at androidx.compose.runtime.internal.ComposableLambdaImpl.invoke(ComposableLambda.jvm.kt:35)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at androidx.compose.runtime.ActualJvm_jvmKt.invokeComposable(ActualJvm.jvm.kt:97)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at androidx.compose.runtime.ComposerImpl.doCompose(Composer.kt:3595)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at androidx.compose.runtime.ComposerImpl.composeContent$runtime_release(Composer.kt:3522)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at androidx.compose.runtime.CompositionImpl.composeContent(Composition.kt:743)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at androidx.compose.runtime.Recomposer.composeInitial$runtime_release(Recomposer.kt:1122)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at androidx.compose.runtime.CompositionImpl.composeInitial(Composition.kt:649)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at androidx.compose.runtime.CompositionImpl.setContent(Composition.kt:635)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at androidx.compose.ui.platform.WrappedComposition$setContent$1.invoke(Wrapper.android.kt:133)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at androidx.compose.ui.platform.WrappedComposition$setContent$1.invoke(Wrapper.android.kt:124)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at androidx.compose.ui.platform.AndroidComposeView.setOnViewTreeOwnersAvailable(AndroidComposeView.android.kt:1631)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at androidx.compose.ui.platform.WrappedComposition.setContent(Wrapper.android.kt:124)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at androidx.compose.ui.platform.WrappedComposition.onStateChanged(Wrapper.android.kt:180)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at androidx.lifecycle.LifecycleRegistry$ObserverWithState.dispatchEvent(LifecycleRegistry.jvm.kt:320)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at androidx.lifecycle.LifecycleRegistry.addObserver(LifecycleRegistry.jvm.kt:198)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at androidx.compose.ui.platform.WrappedComposition$setContent$1.invoke(Wrapper.android.kt:131)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at androidx.compose.ui.platform.WrappedComposition$setContent$1.invoke(Wrapper.android.kt:124)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at androidx.compose.ui.platform.AndroidComposeView.onAttachedToWindow(AndroidComposeView.android.kt:1712)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at android.view.View.dispatchAttachedToWindow(View.java:23294)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at android.view.ViewGroup.dispatchAttachedToWindow(ViewGroup.java:3517)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at android.view.ViewGroup.dispatchAttachedToWindow(ViewGroup.java:3524)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at android.view.ViewGroup.dispatchAttachedToWindow(ViewGroup.java:3524)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at android.view.ViewGroup.dispatchAttachedToWindow(ViewGroup.java:3524)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at android.view.ViewGroup.dispatchAttachedToWindow(ViewGroup.java:3524)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at android.view.ViewRootImpl.performTraversals(ViewRootImpl.java:3667)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at android.view.ViewRootImpl.doTraversal(ViewRootImpl.java:3127)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at android.view.ViewRootImpl$TraversalRunnable.run(ViewRootImpl.java:10807)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at android.view.Choreographer$CallbackRecord.run(Choreographer.java:1630)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at android.view.Choreographer$CallbackRecord.run(Choreographer.java:1639)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at android.view.Choreographer.doCallbacks(Choreographer.java:1235)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at android.view.Choreographer.doFrame(Choreographer.java:1164)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at android.view.Choreographer$FrameDisplayEventReceiver.run(Choreographer.java:1613)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at android.os.Handler.handleCallback(Handler.java:1070)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:125)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at android.os.Looper.dispatchMessage(Looper.java:333)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at android.os.Looper.loopOnce(Looper.java:263)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:367)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at android.app.ActivityThread.main(ActivityThread.java:9287)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at java.lang.reflect.Method.invoke(Native Method)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:566)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:929)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: Caused by: java.lang.ClassNotFoundException: Didn't find class "com.example.domo.ui.home.HomeLauncherScreenKt" on path: DexPathList[[zip file "/data/app/~~etjmUhguzKa_Z2qTw1Yz7w==/com.example.domo-mb5CgFvrz12XttMc4x-lDg==/base.apk"],nativeLibraryDirectories=[/data/app/~~etjmUhguzKa_Z2qTw1Yz7w==/com.example.domo-mb5CgFvrz12XttMc4x-lDg==/lib/arm64, /data/app/~~etjmUhguzKa_Z2qTw1Yz7w==/com.example.domo-mb5CgFvrz12XttMc4x-lDg==/base.apk!/lib/arm64-v8a, /system/lib64, /system_ext/lib64]]
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at java.lang.ClassLoader.loadClass(ClassLoader.java:642)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	at java.lang.ClassLoader.loadClass(ClassLoader.java:578)
+05-09 23:43:34.851 10594 10594 E AndroidRuntime: 	... 79 more
+05-09 23:43:34.854  1800  2321 W ActivityTaskManager:   Force finishing activity com.example.domo/.MainActivity
+05-09 23:43:34.855  1800  2321 W TransitionChain: Combining AR.finish-force-crash into #105(CLOSE|R|0x10) from finishTopCrash
+05-09 23:43:34.855  2094  2147 V WindowManagerShell: Transition requested (#105): android.os.BinderProxy@d118a21 TransitionRequestInfo { type = CLOSE, triggerTask = TaskInfo{userId=0 taskId=133 effectiveUid=10230 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.example.domo/.MainActivity } baseActivity=ComponentInfo{com.example.domo/com.example.domo.MainActivity} topActivity=ComponentInfo{com.example.domo/com.example.domo.MainActivity} origActivity=null realActivity=ComponentInfo{com.example.domo/com.example.domo.MainActivity} numActivities=1 lastActiveTime=981621 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.os.BinderProxy@1f5b42f} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 0 - 0, 0) topActivityInfo=ActivityInfo{f140e46 com.example.domo.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isTopActivityNoDisplay=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false isActivityStackTransparent=false lastNonFullscreenBounds=null capturedLink=null capturedLinkTimestamp=0 requestedVisibleTypes=503 topActivityRequestOpenInBrowserEducationTimestamp=0 appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false isLeafTask= true eligibleForLetterboxEducation= false isLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false eligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 topActivityAppBounds=Rect(0, 0 - 1080, 2400) isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false hasMinAspectRatioOverride=false topActivityLetterboxBounds=null cameraCompatTaskInfo=CameraCompatTaskInfo { cameraCompatMode=undefinedundefined} topNonResizableActivityAspectRatio=-1.0} topActivityMainWindowFrame=null isAppBubble=false}, pipChange = null, remoteTransition = null, displayChange = null, requestedLocation = null, userChange = null, windowingLayerChange = null, flags = 16, debugId = 105 }
+05-09 23:43:34.855  1800 10620 I DropBoxManagerService: add tag=data_app_crash isTagEnabled=true flags=0x2
+05-09 23:43:34.856  2094  2147 V ShellDesktopMode: DesktopTasksController: handleRequest request=TransitionRequestInfo { type = CLOSE, triggerTask = TaskInfo{userId=0 taskId=133 effectiveUid=10230 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.example.domo/.MainActivity } baseActivity=ComponentInfo{com.example.domo/com.example.domo.MainActivity} topActivity=ComponentInfo{com.example.domo/com.example.domo.MainActivity} origActivity=null realActivity=ComponentInfo{com.example.domo/com.example.domo.MainActivity} numActivities=1 lastActiveTime=981621 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{android.os.BinderProxy@1f5b42f} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 0 - 0, 0) topActivityInfo=ActivityInfo{f140e46 com.example.domo.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isTopActivityNoDisplay=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false isActivityStackTransparent=false lastNonFullscreenBounds=null capturedLink=null capturedLinkTimestamp=0 requestedVisibleTypes=503 topActivityRequestOpenInBrowserEducationTimestamp=0 appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false isLeafTask= true eligibleForLetterboxEducation= false isLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false eligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 topActivityAppBounds=Rect(0, 0 - 1080, 2400) isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false hasMinAspectRatioOverride=false topActivityLetterboxBounds=null cameraCompatTaskInfo=CameraCompatTaskInfo { cameraCompatMode=undefinedundefined} topNonResizableActivityAspectRatio=-1.0} topActivityMainWindowFrame=null isAppBubble=false}, pipChange = null, remoteTransition = null, displayChange = null, requestedLocation = null, userChange = null, windowingLayerChange = null, flags = 16, debugId = 105 }
+05-09 23:43:34.856  2094  2147 V ShellDesktopMode: DesktopTasksController: skipping handleRequest reason=triggerTask's display doesn't support desktop mode
+05-09 23:43:34.856   537   648 I libbinder.BpBinder: onLastStrongRef automatically unlinking death recipients for descriptor: '(not cached)'
+05-09 23:43:34.861  1800  2321 V WindowManager: Defer transition id=105 for TaskFragmentTransaction=android.os.Binder@4976bff
+05-09 23:43:34.861  1800  2321 V WindowManager: deferTransitionReady deferReadyDepth=1 stack=com.android.server.wm.TransitionController.deferTransitionReady:1061 com.android.server.wm.TaskFragmentOrganizerController$TaskFragmentOrganizerState.dispatchTransaction:517 com.android.server.wm.TaskFragmentOrganizerController.dispatchPendingEvents:1259 com.android.server.wm.TaskFragmentOrganizerController.dispatchPendingEvents:1228 com.android.server.wm.RootWindowContainer.performSurfacePlacement:777 
+05-09 23:43:34.863  1800  1820 I ActivityManager: Showing crash dialog for package com.example.domo u0
+05-09 23:43:34.864  1800  3024 V WindowManager: Continue transition id=105 for TaskFragmentTransaction=android.os.Binder@4976bff
+05-09 23:43:34.864  2094  2147 V WindowManagerShell: Transition animation finished (aborted=false), notifying core (#104) android.os.BinderProxy@6c5e20e@0
+05-09 23:43:34.864  1800  3024 V WindowManager: continueTransitionReady deferReadyDepth=0 stack=com.android.server.wm.TransitionController.continueTransitionReady:1071 com.android.server.wm.TaskFragmentOrganizerController$TaskFragmentOrganizerState.onTransactionFinished:546 com.android.server.wm.TaskFragmentOrganizerController.onTransactionHandled:740 android.window.ITaskFragmentOrganizerController$Stub.onTransact:225 android.os.Binder.execTransactInternal:1473 
+05-09 23:43:34.865  1800  1819 V WindowManager: Finish Transition (#104): created at 05-09 23:43:34.361 collect-started=0.019ms request-sent=12.035ms started=72.974ms ready=141.162ms sent=159.495ms commit=21.514ms finished=504.234ms
+05-09 23:43:34.866  2094  2147 V WindowManagerShell: Track 0 became idle
+05-09 23:43:34.866  2246  2246 D b/417220811: invalidateLoadedTasks - previous requestLoadId: -1
+05-09 23:43:34.892  1800  1820 D WindowOnBackDispatcher: setTopOnBackInvokedCallback (unwrapped): android.app.Dialog$$ExternalSyntheticLambda2@ad5dd56
+05-09 23:43:34.892  1800  1820 D CoreBackPreview: Window{716b600 u0 Application Error: com.example.domo}: Setting back callback OnBackInvokedCallbackInfo{mCallback=android.window.WindowOnBackInvokedDispatcher$OnBackInvokedCallbackWrapper@d03a1d7, mPriority=-1, mIsAnimationCallback=false, mOverrideBehavior=0}
+05-09 23:43:34.899  1800  2992 W HWUI    : Failed to choose config with EGL_SWAP_BEHAVIOR_PRESERVED, retrying without...
+05-09 23:43:34.900  1800  2992 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+05-09 23:43:34.990   490   526 I RanchuHwc: logCompositionFallbackIfChanged: layer 113 CompositionType fallback from 2 to 1
+05-09 23:43:35.007   490   526 I RanchuHwc: logCompositionFallbackIfChanged: layer 114 CompositionType fallback from 3 to 1
+05-09 23:43:35.097  1800  1987 I HalDevMgr: bestIfaceCreationProposal is null, requestIface=STA, existingIface=[name=wlan0 type=STA]
+05-09 23:43:35.245 10594 10600 I om.example.domo: Compiler allocated 5155KB to compile void android.view.ViewRootImpl.performTraversals()
+05-09 23:43:35.356  1800  1822 W ActivityTaskManager: Activity top resumed state loss timeout for ActivityRecord{227410194 u0 com.example.domo/.MainActivity t133 f}}
+05-09 23:43:35.357  1800  1822 W ActivityTaskManager: Activity pause timeout for ActivityRecord{227410194 u0 com.example.domo/.MainActivity t133 f}}
+05-09 23:43:35.360  2246  2246 D BaseActivity: Launcher flags updated: [state_started|state_resumed|state_user_active] +[state_resumed|state_user_active]
+05-09 23:43:35.360  2094  2147 D WindowManagerShell: setLauncherKeepClearAreaHeight: visible=true, height=495
+05-09 23:43:35.361  2246  2246 D BaseActivity: Launcher flags updated: [state_started|state_resumed|state_deferred_resumed|state_user_active] +[state_deferred_resumed]
+05-09 23:43:35.361  2246  2246 D StatsLog: LAUNCHER_ONRESUME
+05-09 23:43:35.363  2094  2213 V WindowManagerShell: onTransitionReady(transaction=7730941138633)
+05-09 23:43:35.364  2094  2147 V WindowManagerShell: onTransitionReady (#105) android.os.BinderProxy@d118a21: {id=105 t=CLOSE f=0x10 trk=1 r=[0@Point(0, 0)] c=[
+05-09 23:43:35.364  2094  2147 V WindowManagerShell:         {m=TO_FRONT f=SHOW_WALLPAPER|MOVE_TO_TOP leash=Surface(name=Task=115#249)/@0x2dba75d sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0 taskParent=-1 winMode=1 userId=0},
+05-09 23:43:35.364  2094  2147 V WindowManagerShell:         {m=CLOSE f=NONE leash=Surface(name=Task=133#722)/@0x372c8d2 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0 taskParent=-1 winMode=1 userId=0},
+05-09 23:43:35.364  2094  2147 V WindowManagerShell:         {m=TO_FRONT f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{d5395ea}#155)/@0x57bada3 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0}
+05-09 23:43:35.364  2094  2147 V WindowManagerShell:     ]}
+05-09 23:43:35.364  2094  2147 V WindowManagerShell: Playing animation for (#105) android.os.BinderProxy@d118a21@1
+05-09 23:43:35.364  2094  2147 V ShellRecents: RecentsTransitionHandler.startAnimation: no controller found
+05-09 23:43:35.365  2094  2147 V ShellDesktopMode: DesktopMixedTransitionHandler: No pending desktop transition
+05-09 23:43:35.365  2094  2147 V WindowManagerShell: Transition doesn't have explicit remote, search filters for match for {id=105 t=CLOSE f=0x10 trk=1 r=[0@Point(0, 0)] c=[{m=TO_FRONT f=SHOW_WALLPAPER|MOVE_TO_TOP leash=Surface(name=Task=115#249)/@0x2dba75d sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0 taskParent=-1 winMode=1 userId=0},{m=CLOSE f=NONE leash=Surface(name=Task=133#722)/@0x372c8d2 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0 taskParent=-1 winMode=1 userId=0},{m=TO_FRONT f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{d5395ea}#155)/@0x57bada3 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0}]}
+05-09 23:43:35.365  2094  2147 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=undefined independent=true modes=[CLOSE,TO_BACK] flags=IN_TASK_WITH_EMBEDDED_ACTIVITY mustBeTask=false order=ANY topActivity=null launchCookie=null taskFragmentToken=android.os.BinderProxy@749e7bd windowingMode=undefined isCrossDisplayMove=false}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@84171b2, appThread = android.app.IApplicationThread$Stub$Proxy@62dd503, debugName = overlayBackTransition }}
+05-09 23:43:35.365  2094  2147 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x0 checks=[{atype=dream independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined isCrossDisplayMove=false},{atype=home independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined isCrossDisplayMove=false}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@bbccc80, appThread = android.app.IApplicationThread$Stub$Proxy@b242b9, debugName = LauncherToDream }}
+05-09 23:43:35.365  2094  2147 V WindowManagerShell:  Checking filter Pair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null windowingMode=undefined isCrossDisplayMove=false},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined isCrossDisplayMove=false},{NOT atype=undefined independent=true modes=[] flags=NONE mustBeTask=true order=ANY topActivity=null launchCookie=null customAnim=true windowingMode=undefined isCrossDisplayMove=false}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@50f6fe, appThread = android.app.IApplicationThread$Stub$Proxy@42ebe5f, debugName = QuickstepLaunchHome }}
+05-09 23:43:35.365  2094  2147 D RemoteTransitionHandler: Found filterPair{{types=[] flags=0x0] notFlags=0x100 checks=[{atype=home independent=true modes=[OPEN,TO_FRONT] flags=NONE mustBeTask=false order=TOP topActivity=ComponentInfo{com.google.android.apps.nexuslauncher/com.google.android.apps.nexuslauncher.NexusLauncherActivity} launchCookie=null windowingMode=undefined isCrossDisplayMove=false},{atype=standard independent=true modes=[CLOSE,TO_BACK] flags=NONE mustBeTask=false order=ANY topActivity=null launchCookie=null windowingMode=undefined isCrossDisplayMove=false},{NOT atype=undefined independent=true modes=[] flags=NONE mustBeTask=true order=ANY topActivity=null launchCookie=null customAnim=true windowingMode=undefined isCrossDisplayMove=false}]} RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@50f6fe, appThread = android.app.IApplicationThread$Stub$Proxy@42ebe5f, debugName = QuickstepLaunchHome }}
+05-09 23:43:35.365  2094  2147 V WindowManagerShell:  Delegate animation for (#105) to RemoteTransition { remoteTransition = android.window.IRemoteTransition$Stub$Proxy@50f6fe, appThread = android.app.IApplicationThread$Stub$Proxy@42ebe5f, debugName = QuickstepLaunchHome }
+05-09 23:43:35.371  1800  1819 V WindowManager: Sent Transition (#105) createdAt=05-09 23:43:34.855 via request=TransitionRequestInfo { type = CLOSE, triggerTask = TaskInfo{userId=0 taskId=133 effectiveUid=10230 displayId=0 isRunning=true baseIntent=Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.example.domo/.MainActivity } baseActivity=ComponentInfo{com.example.domo/com.example.domo.MainActivity} topActivity=ComponentInfo{com.example.domo/com.example.domo.MainActivity} origActivity=null realActivity=ComponentInfo{com.example.domo/com.example.domo.MainActivity} numActivities=1 lastActiveTime=981621 supportsMultiWindow=true resizeMode=1 isResizeable=true minWidth=-1 minHeight=-1 defaultMinSize=220 token=WCT{RemoteToken{2937be6 Task{fb620e3 #133 type=standard A=10230:com.example.domo}}} topActivityType=1 pictureInPictureParams=null shouldDockBigOverlays=false launchIntoPipHostTaskId=-1 lastParentTaskIdBeforePip=-1 displayCutoutSafeInsets=Rect(0, 0 - 0, 0) topActivityInfo=ActivityInfo{2700527 com.example.domo.MainActivity} launchCookies=[] positionInParent=Point(0, 0) parentTaskId=-1 isFocused=true isVisible=true isVisibleRequested=true isTopActivityNoDisplay=false isSleeping=false locusId=null displayAreaFeatureId=1 isTopActivityTransparent=false isActivityStackTransparent=false lastNonFullscreenBounds=null capturedLink=null capturedLinkTimestamp=0 requestedVisibleTypes=503 topActivityRequestOpenInBrowserEducationTimestamp=0 appCompatTaskInfo=AppCompatTaskInfo { topActivityInSizeCompat=false isLeafTask= true eligibleForLetterboxEducation= false isLetterboxEducationEnabled= true isLetterboxDoubleTapEnabled= false eligibleForUserAspectRatioButton= false topActivityBoundsLetterboxed= false isFromLetterboxDoubleTap= false topActivityLetterboxVerticalPosition= -1 topActivityLetterboxHorizontalPosition= -1 topActivityLetterboxWidth=-1 topActivityLetterboxHeight=-1 topActivityAppBounds=Rect(0, 0 - 1080, 2400) isUserFullscreenOverrideEnabled=false isSystemFullscreenOverrideEnabled=false hasMinAspectRatioOverride=false topActivityLetterboxBounds=null cameraCompatTaskInfo=CameraCompatTaskInfo { cameraCompatMode=undefinedundefined} topNonResizableActivityAspectRatio=-1.0} topActivityMainWindowFrame=null isAppBubble=false}, pipChange = null, remoteTransition = null, displayChange = null, requestedLocation = null, userChange = null, windowingLayerChange = null, flags = 16, debugId = 105 }
+05-09 23:43:35.372  1800  1819 V WindowManager:     startWCT=WindowContainerTransaction { changes= {} hops= [] errorCallbackToken=null taskFragmentOrganizer=null }
+05-09 23:43:35.372  1800  1819 V WindowManager:     info={id=105 t=CLOSE f=0x10 trk=1 r=[0@Point(0, 0)] c=[
+05-09 23:43:35.372  1800  1819 V WindowManager:         {WCT{RemoteToken{2c8f642 Task{e257273 #115 type=home}}} m=TO_FRONT f=SHOW_WALLPAPER|MOVE_TO_TOP leash=Surface(name=Task=115#249)/@0x494d451 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0 taskParent=-1 winMode=1 userId=0},
+05-09 23:43:35.372  1800  1819 V WindowManager:         {WCT{RemoteToken{2937be6 Task{fb620e3 #133 type=standard A=10230:com.example.domo}}} m=CLOSE f=NONE leash=Surface(name=Task=133#722)/@0xf5a7d28 sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0 taskParent=-1 winMode=1 userId=0},
+05-09 23:43:35.372  1800  1819 V WindowManager:         {m=TO_FRONT f=IS_WALLPAPER leash=Surface(name=WallpaperWindowToken{d5395ea}#155)/@0xdf4f03e sb=Rect(0, 0 - 1080, 2400) eb=Rect(0, 0 - 1080, 2400) epz=Point(1080, 2400) d=0}
+05-09 23:43:35.372  1800  1819 V WindowManager:     ]}
+05-09 23:43:35.373  2246  2246 D LauncherStateManager: StateManager.cancelAnimation: animation ongoing: false, partial trace:
+05-09 23:43:35.373  2246  2246 D LauncherStateManager: 	at com.android.launcher3.statemanager.StateManager.setCurrentAnimation(go/retraceme f3a19d912c87c27267cfbc05ba0bc7b202ab72a6648bd76225f5f7e128d94583:18)
+05-09 23:43:35.373  2246  2246 D LauncherStateManager: 	at com.android.launcher3.QuickstepTransitionManager.createWallpaperOpenAnimations(go/retraceme f3a19d912c87c27267cfbc05ba0bc7b202ab72a6648bd76225f5f7e128d94583:646)
+05-09 23:43:35.373  2246  2246 D LauncherStateManager: 	at com.android.launcher3.QuickstepTransitionManager$WallpaperOpenLauncherAnimationRunner.onAnimationStart(go/retraceme f3a19d912c87c27267cfbc05ba0bc7b202ab72a6648bd76225f5f7e128d94583:96)
+05-09 23:43:35.373  2246  2246 D b/311077782: LauncherAnimationRunner.setAnimation
+05-09 23:43:35.381  5167  5348 I AiAiEcho: Predicting[0]:  [CONTEXT sampling_count=5 ]
+05-09 23:43:35.382  2094  2147 V WindowManagerShell:  animated by com.android.wm.shell.transition.RemoteTransitionHandler@fab5175
+05-09 23:43:35.386  5167  5348 I AiAiEcho: EchoTargets: 
+05-09 23:43:35.386  5167  5348 I AiAiEcho: Filtered by AiAi flag check: 
+05-09 23:43:35.386  5167  5348 I AiAiEcho: [CONTEXT ratelimit_period="10 SECONDS" ]
+05-09 23:43:35.386  1800  2038 D BackgroundInstallControlService: Package event received: 0
+05-09 23:43:35.389  5167  5348 I AiAiEcho: #remoteViewsTwiddler: feature disabled.
+05-09 23:43:35.392  1800  2038 D BackgroundInstallControlService: Package event received: 0
+05-09 23:43:35.394  1800  2038 D BackgroundInstallControlService: Package event received: 0
+05-09 23:43:35.394  5167  5348 I AiAiEcho: #postPredictionTargets: Sending updates to UISurface home with targets# 0 (types=[])
+05-09 23:43:35.419  2246  2289 D QuickstepModelDelegate: notifyAppTargetEvent action=1 launchLocation=
+05-09 23:43:35.454  2246  2259 W System  : A resource failed to call release. 
+05-09 23:43:35.454  2246  2259 W System  : A resource failed to call release. 
+05-09 23:43:35.454  2246  2259 W System  : A resource failed to call release. 
+05-09 23:43:35.465  2246  2246 D b/417220811: invalidateLoadedTasks - previous requestLoadId: -1
+05-09 23:43:35.693  2094  2213 V WindowManagerShell: Received remote transition finished callback for (#105)
+05-09 23:43:35.694  2094  2147 V WindowManagerShell: Transition animation finished (aborted=false), notifying core (#105) android.os.BinderProxy@d118a21@1
+05-09 23:43:35.696  1800  1819 V WindowManager: Finish Transition (#105): created at 05-09 23:43:34.855 collect-started=0.009ms request-sent=0.068ms started=7.018ms ready=503.875ms sent=507.503ms commit=14.203ms finished=841.053ms
+05-09 23:43:35.699  2094  2147 V WindowManagerShell: Track 1 became idle
+05-09 23:43:35.699  2094  2147 V WindowManagerShell: All active transition animations finished
+05-09 23:43:35.699  1800  2064 W ImageReader_JNI: Unable to acquire a buffer item, very likely client tried to acquire more than maxImages buffers
+05-09 23:43:35.711  2246  2246 D SsBaseTemplateCard: Passed-in item info is null
+05-09 23:43:35.713  2246  2246 D SsBaseTemplateCard: Passed-in item info is null
+05-09 23:43:35.713  2246  2246 D SsBaseTemplateCard: Passed-in item info is null
+05-09 23:43:35.713  2246  2246 D SsBaseTemplateCard: Passed-in item info is null
+05-09 23:43:35.713  2246  2246 I SsBaseTemplateCard: Secondary card pane is null
+05-09 23:43:37.880  1800  2628 E TaskPersister: File error accessing recents directory (directory doesn't exist?).
+05-09 23:43:38.105  1800  1987 I HalDevMgr: bestIfaceCreationProposal is null, requestIface=STA, existingIface=[name=wlan0 type=STA]
