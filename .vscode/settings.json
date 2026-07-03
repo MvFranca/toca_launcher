@@ -1,0 +1,4 @@
+{
+  "markdown.preview.security.level": "allowInsecureContent",
+  "markdown.preview.resourceRoots": ["${workspaceFolder}"]
+}
