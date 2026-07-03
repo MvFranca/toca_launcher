@@ -14,6 +14,7 @@ import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -51,7 +52,9 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.Shadow
+import androidx.compose.ui.graphics.drawscope.clipPath
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -60,6 +63,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.domo.ui.components.ButtonColors
+import com.example.domo.ui.components.GameButtonDefaults
+import com.example.domo.ui.components.GameProgressBar
+import com.example.domo.ui.components.timerProgressColors
 import com.example.domo.ui.minigame.calculadora.model.SessionResult
 
 // ── Paleta game UI ──────────────────────────────────────────────────────────────
@@ -83,10 +90,28 @@ private val CWrongDark    = Color(0xFFC4193E)
 private val CComboStart   = Color(0xFFFF6B00)
 private val CComboEnd     = Color(0xFFFF8C00)
 
-// Cores face/sombra dos botões A/B/C/D
-private val optionFaceColors   = listOf(CBlueFace, CPinkFace, CYellowFace, CGreenFace)
-private val optionShadowColors = listOf(CBlueShadow, CPinkShadow, CYellowShadow, CGreenShadow)
-private val optionLetters      = listOf("A", "B", "C", "D")
+// Cores face/sombra dos botões A/B/C/D — usando ButtonColors do design system
+// GreenLime e Amarelo são match exato; Blue/Pink/Yellow usam gradiente faceTop próprio
+private val optionColors = listOf(
+    ButtonColors(faceTop = Color(0xFF62E0FF), faceBtm = CBlueFace,   shadow = CBlueShadow),  // A — azul
+    ButtonColors(faceTop = Color(0xFFFF9FFF), faceBtm = CPinkFace,   shadow = CPinkShadow),  // B — pink
+    ButtonColors(faceTop = Color(0xFFFFEC4D), faceBtm = CYellowFace, shadow = CYellowShadow), // C — amarelo
+    GameButtonDefaults.GreenLime,                                                             // D — verde
+)
+
+// Feedback visual: correto/errado também usam gradiente para manter o padrão
+private val ColorsCorrect = ButtonColors(
+    faceTop = Color(0xFF28BE8A),
+    faceBtm = CCorrect,
+    shadow  = CCorrectDark,
+)
+private val ColorsWrong = ButtonColors(
+    faceTop = Color(0xFFFF6666),
+    faceBtm = CWrong,
+    shadow  = CWrongDark,
+)
+
+private val optionLetters = listOf("A", "B", "C", "D")
 
 @Composable
 fun CalculadoraVelozScreen(
@@ -247,18 +272,7 @@ private fun GameHeader(
 
 @Composable
 private fun TimerRow(progress: Float) {
-    val animatedProgress by animateFloatAsState(
-        targetValue = progress,
-        animationSpec = tween(durationMillis = 80, easing = LinearEasing),
-        label = "timer",
-    )
-    val barColors = when {
-        animatedProgress > 0.55f -> listOf(Color(0xFF1D9E75), Color(0xFF34D399))
-        animatedProgress > 0.28f -> listOf(Color(0xFFF59E0B), Color(0xFFFCD34D))
-        else -> listOf(Color(0xFFE24B4A), Color(0xFFFF6B6B))
-    }
-
-    Row(verticalAlignment = Alignment.CenterVertically) {
+    Row(verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
         Icon(
             imageVector = Icons.Rounded.Timer,
             contentDescription = null,
@@ -266,21 +280,13 @@ private fun TimerRow(progress: Float) {
             modifier = Modifier.size(18.dp),
         )
         Spacer(modifier = Modifier.width(8.dp))
-        Box(
-            modifier = Modifier
-                .weight(1f)
-                .height(10.dp)
-                .clip(RoundedCornerShape(50))
-                .background(Color.Black.copy(alpha = 0.20f)),
-        ) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth(animatedProgress.coerceIn(0f, 1f))
-                    .height(10.dp)
-                    .clip(RoundedCornerShape(50))
-                    .background(Brush.horizontalGradient(barColors)),
-            )
-        }
+        GameProgressBar(
+            progress      = progress,
+            colors        = timerProgressColors(progress),
+            height        = 10.dp,
+            animationSpec = tween(durationMillis = 80, easing = LinearEasing),
+            modifier      = Modifier.weight(1f),
+        )
     }
 }
 
@@ -395,8 +401,7 @@ private fun AnswerGrid(
                         AnswerButton(
                             value = value,
                             letter = optionLetters[index],
-                            faceColor = optionFaceColors[index],
-                            shadowColor = optionShadowColors[index],
+                            colors = optionColors[index],
                             visualState = buttonState,
                             scale = pulseScale,
                             enabled = answerState == AnswerState.IDLE,
@@ -416,18 +421,18 @@ private enum class ButtonVisualState { IDLE, CORRECT, WRONG }
 private fun AnswerButton(
     value: Int,
     letter: String,
-    faceColor: Color,
-    shadowColor: Color,
+    colors: ButtonColors,
     visualState: ButtonVisualState,
     scale: Float,
     enabled: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val (activeFace, activeShadow) = when (visualState) {
-        ButtonVisualState.CORRECT -> CCorrect to CCorrectDark
-        ButtonVisualState.WRONG   -> CWrong to CWrongDark
-        ButtonVisualState.IDLE    -> faceColor to shadowColor
+    // Seleciona o set de cores conforme o estado de feedback
+    val activeColors = when (visualState) {
+        ButtonVisualState.CORRECT -> ColorsCorrect
+        ButtonVisualState.WRONG   -> ColorsWrong
+        ButtonVisualState.IDLE    -> colors
     }
 
     Box(
@@ -435,72 +440,107 @@ private fun AnswerButton(
             .scale(scale)
             .heightIn(min = 84.dp),
     ) {
-        // Camada sombra (3D base)
+        // ── Camada outer/shadow (3D base) ──────────────────────────────────────
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .heightIn(min = 84.dp)
                 .clip(RoundedCornerShape(18.dp))
-                .background(activeShadow)
-                .border(2.dp, Color.White, RoundedCornerShape(18.dp)),
+                .background(activeColors.shadow)
+                .border(3.dp, Color.White, RoundedCornerShape(18.dp)),
         )
-        // Camada face
+
+        // ── Camada face: gradiente + gloss diagonal (design system) ────────────
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .heightIn(min = 80.dp)
                 .padding(bottom = 4.dp)
                 .clip(RoundedCornerShape(16.dp))
-                .background(activeFace)
-                .then(if (enabled) Modifier.clickable(onClick = onClick) else Modifier)
-                .padding(horizontal = 12.dp, vertical = 14.dp),
-        ) {
-            // Label de letra (canto superior esquerdo)
-            Box(
-                modifier = Modifier
-                    .size(26.dp)
-                    .clip(CircleShape)
-                    .background(Color.White.copy(alpha = 0.30f))
-                    .align(Alignment.TopStart),
-                contentAlignment = Alignment.Center,
-            ) {
-                Text(
-                    text = letter,
-                    color = Color.White,
-                    fontWeight = FontWeight.ExtraBold,
-                    fontSize = 11.sp,
+                .background(
+                    Brush.verticalGradient(listOf(activeColors.faceTop, activeColors.faceBtm)),
                 )
+                .then(if (enabled) Modifier.clickable(onClick = onClick) else Modifier),
+        ) {
+            // Reflexo diagonal — mesmo padrão trapezoidal do GameButton3D
+            Canvas(modifier = Modifier.matchParentSize()) {
+                val alpha = 0.35f
+                val path = Path().apply {
+                    moveTo(0f, 0f)
+                    lineTo(size.width * 0.75f, 0f)
+                    lineTo(size.width * 0.18f, size.height)
+                    lineTo(0f, size.height)
+                    close()
+                }
+                clipPath(path) {
+                    drawRect(
+                        brush = Brush.horizontalGradient(
+                            0.00f to Color.White.copy(alpha = alpha),
+                            0.55f to Color.White.copy(alpha = alpha * 0.35f),
+                            1.00f to Color.Transparent,
+                            startX = 0f,
+                            endX   = size.width * 0.75f,
+                        ),
+                    )
+                }
             }
 
-            // Valor centralizado
-            Text(
-                text = value.toString(),
-                fontSize = 28.sp,
-                fontWeight = FontWeight.ExtraBold,
-                color = Color.White,
-                modifier = Modifier.align(Alignment.Center),
-                style = TextStyle(shadow = Shadow(Color.Black.copy(alpha = 0.2f), offset = Offset(0f, 2f))),
-            )
+            // Conteúdo: letra badge + valor + ícone de feedback
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .heightIn(min = 80.dp)
+                    .padding(horizontal = 12.dp, vertical = 14.dp),
+            ) {
+                // Badge com a letra (A/B/C/D) — canto superior esquerdo
+                Box(
+                    modifier = Modifier
+                        .size(26.dp)
+                        .clip(CircleShape)
+                        .background(Color.White.copy(alpha = 0.30f))
+                        .align(Alignment.TopStart),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Text(
+                        text = letter,
+                        color = Color.White,
+                        fontWeight = FontWeight.ExtraBold,
+                        fontSize = 11.sp,
+                    )
+                }
 
-            // Ícone de feedback no canto direito
-            when (visualState) {
-                ButtonVisualState.CORRECT -> Icon(
-                    imageVector = Icons.Rounded.CheckCircle,
-                    contentDescription = null,
-                    tint = Color.White,
-                    modifier = Modifier
-                        .size(22.dp)
-                        .align(Alignment.BottomEnd),
+                // Valor da alternativa — centralizado
+                Text(
+                    text = value.toString(),
+                    fontSize = 28.sp,
+                    fontWeight = FontWeight.ExtraBold,
+                    color = Color.White,
+                    modifier = Modifier.align(Alignment.Center),
+                    style = TextStyle(
+                        shadow = Shadow(
+                            color      = activeColors.shadow.copy(alpha = 0.40f),
+                            offset     = Offset(0f, 2f),
+                            blurRadius = 3f,
+                        ),
+                    ),
                 )
-                ButtonVisualState.WRONG -> Icon(
-                    imageVector = Icons.Rounded.Cancel,
-                    contentDescription = null,
-                    tint = Color.White,
-                    modifier = Modifier
-                        .size(22.dp)
-                        .align(Alignment.BottomEnd),
-                )
-                else -> Unit
+
+                // Ícone de feedback — canto inferior direito
+                when (visualState) {
+                    ButtonVisualState.CORRECT -> Icon(
+                        imageVector = Icons.Rounded.CheckCircle,
+                        contentDescription = null,
+                        tint = Color.White,
+                        modifier = Modifier.size(22.dp).align(Alignment.BottomEnd),
+                    )
+                    ButtonVisualState.WRONG -> Icon(
+                        imageVector = Icons.Rounded.Cancel,
+                        contentDescription = null,
+                        tint = Color.White,
+                        modifier = Modifier.size(22.dp).align(Alignment.BottomEnd),
+                    )
+                    else -> Unit
+                }
             }
         }
     }

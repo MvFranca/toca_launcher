@@ -55,6 +55,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.domo.ui.components.GameProgressBar
+import com.example.domo.ui.components.timerProgressColors
 import com.example.domo.ui.minigame.calculadora.model.SessionResult
 
 // ── Paleta game UI ──────────────────────────────────────────────────────────────
@@ -535,48 +537,14 @@ private fun StatColumn(value: String, label: String, icon: ImageVector, iconTint
 
 @Composable
 private fun HitRateBar(progress: Float) {
-    val percentage = (progress * 100).toInt()
-    val barColor = when {
-        progress >= 0.75f -> Brush.horizontalGradient(listOf(Color(0xFF1D9E75), Color(0xFF34D399)))
-        progress >= 0.45f -> Brush.horizontalGradient(listOf(Color(0xFFF59E0B), Color(0xFFFCD34D)))
-        else              -> Brush.horizontalGradient(listOf(Color(0xFFE24B4A), Color(0xFFFF6B6B)))
-    }
-
-    Column {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-        ) {
-            Text(
-                text = "Taxa de acerto",
-                fontSize = 12.sp,
-                color = CTextMuted,
-                fontWeight = FontWeight.SemiBold,
-            )
-            Text(
-                text = "$percentage%",
-                fontSize = 12.sp,
-                color = CTextDark,
-                fontWeight = FontWeight.ExtraBold,
-            )
-        }
-        Spacer(modifier = Modifier.height(6.dp))
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(10.dp)
-                .clip(RoundedCornerShape(50))
-                .background(Color(0xFFEEEBE4)),
-        ) {
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth(progress.coerceIn(0f, 1f))
-                    .height(10.dp)
-                    .clip(RoundedCornerShape(50))
-                    .background(barColor),
-            )
-        }
-    }
+    GameProgressBar(
+        progress       = progress,
+        colors         = timerProgressColors(progress),
+        height         = 10.dp,
+        label          = "Taxa de acerto",
+        showPercentage = true,
+        modifier       = Modifier.fillMaxWidth(),
+    )
 }
 
 @Composable

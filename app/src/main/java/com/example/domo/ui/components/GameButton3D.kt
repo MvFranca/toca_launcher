@@ -1,5 +1,6 @@
 package com.example.domo.ui.components
 
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.spring
@@ -39,6 +40,19 @@ data class ButtonColors(
     val shadow: Color,
 )
 
+// ── Variante estrutural ─────────────────────────────────────────────────────────
+/**
+ * Define a estrutura visual do botão, independente da cor.
+ *
+ * - [Solid]    — botão 3D completo: outer shadow + face gradiente + gloss + borda branca.
+ *                Press: profundidade colapsa 4dp→0dp via spring.
+ * - [Outlined] — borda colorida (shadow color), face transparente, texto colorido. Sem 3D depth.
+ *                Press: fundo anima 0%→15% da shadow color.
+ * - [Ghost]    — sem borda, sem background, só texto colorido em área tocável.
+ *                Press: fundo anima 0%→12% da shadow color.
+ */
+enum class ButtonStyle { Solid, Outlined, Ghost }
+
 // ── Paleta de variantes do design system Domo ──────────────────────────────────
 object GameButtonDefaults {
     val Amarelo = ButtonColors(
@@ -66,7 +80,6 @@ object GameButtonDefaults {
         faceBtm = Color(0xFF78D045),
         shadow  = Color(0xFF3E9910),
     )
-    // Mantém compatibilidade com o verde vívido já usado no HeroCard original
     val GreenLime = ButtonColors(
         faceTop = Color(0xFF80F020),
         faceBtm = Color(0xFF67EB00),
@@ -75,87 +88,86 @@ object GameButtonDefaults {
 }
 
 /**
- * Botão gamificado 3D com efeito de profundidade, gloss no topo e animação de press.
+ * Botão gamificado com 3 variantes estruturais ([ButtonStyle]) e 6 paletas de cor.
  *
- * Anatomia:
- *   ┌─────────────────────────────┐ ← outer (cor shadow = profundidade inferior)
- *   │ ┌─────────────────────────┐ │ ← face (gradiente top→btm + gloss overlay)
- *   │ │        LABEL            │ │
- *   │ └─────────────────────────┘ │
- *   └─────────────────────────────┘
+ * Uso:
+ * ```kotlin
+ * // Sólido (padrão)
+ * GameButton3D("JOGAR", GameButtonDefaults.Verde, Modifier.weight(1f)) {}
  *
- * No estado pressed: o espaço inferior (depth) colapsa de 4.dp → 0.dp via animação
- * spring, dando a sensação de que o botão afunda ao toque.
+ * // Outlined
+ * GameButton3D("JOGAR", GameButtonDefaults.Verde, style = ButtonStyle.Outlined) {}
+ *
+ * // Ghost
+ * GameButton3D("JOGAR", GameButtonDefaults.Verde, style = ButtonStyle.Ghost) {}
+ * ```
  */
 @Composable
 fun GameButton3D(
     text: String,
     colors: ButtonColors,
     modifier: Modifier = Modifier,
+    style: ButtonStyle = ButtonStyle.Solid,
     enabled: Boolean = true,
     onClick: () -> Unit,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
 
-    // Profundidade: colapsa ao pressionar, animado com spring para resposta snappy
+    val clickableModifier = if (enabled) {
+        Modifier.clickable(
+            interactionSource = interactionSource,
+            indication        = null,
+            onClick           = onClick,
+        )
+    } else {
+        Modifier
+    }
+
+    when (style) {
+        ButtonStyle.Solid   -> SolidButton(text, colors, modifier, enabled, isPressed, clickableModifier)
+        ButtonStyle.Outlined -> OutlinedButton(text, colors, modifier, enabled, isPressed, clickableModifier)
+        ButtonStyle.Ghost   -> GhostButton(text, colors, modifier, enabled, isPressed, clickableModifier)
+    }
+}
+
+// ── Solid ───────────────────────────────────────────────────────────────────────
+@Composable
+private fun SolidButton(
+    text: String,
+    colors: ButtonColors,
+    modifier: Modifier,
+    enabled: Boolean,
+    isPressed: Boolean,
+    clickableModifier: Modifier,
+) {
     val depth by animateDpAsState(
-        targetValue = if (isPressed || !enabled) 0.dp else 4.dp,
+        targetValue  = if (isPressed || !enabled) 0.dp else 4.dp,
         animationSpec = spring(
             dampingRatio = Spring.DampingRatioMediumBouncy,
             stiffness    = Spring.StiffnessMedium,
         ),
-        label = "btn_depth",
+        label = "btn_solid_depth",
     )
 
     Box(
         modifier = modifier
             .alpha(if (enabled) 1f else 0.45f)
-            // Camada outer = cor de sombra/profundidade
             .clip(RoundedCornerShape(24.dp))
             .background(colors.shadow)
-            // Borda branca totalmente opaca — acabamento arcade
             .border(3.dp, Color.White, RoundedCornerShape(24.dp))
-            // depth → espaço inferior que cria o efeito 3D
             .padding(bottom = depth),
     ) {
-        // Camada face = gradiente + gloss + texto
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(21.dp))
-                .background(
-                    Brush.verticalGradient(listOf(colors.faceTop, colors.faceBtm)),
-                )
-                .then(
-                    if (enabled) {
-                        Modifier.clickable(
-                            interactionSource = interactionSource,
-                            indication        = null, // ripple customizado via depth
-                            onClick           = onClick,
-                        )
-                    } else {
-                        Modifier
-                    },
-                ),
+                .background(Brush.verticalGradient(listOf(colors.faceTop, colors.faceBtm)))
+                .then(clickableModifier),
         ) {
-            // Reflexo diagonal via Canvas + clipPath.
-            //
-            // Botões largos (aspect ratio ~5-7:1) quebram gradientes com
-            // Offset(+∞,+∞) porque a diagonal se torna quase horizontal e
-            // o reflexo desaparece. A solução correta é desenhar um trapézio
-            // que cobre 80% do topo afunilando para 20% na base, e dentro
-            // dele um gradiente horizontal branco→transparente.
-            //
-            //  topo:  |▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▒▒░░|   (80% da largura)
-            //  meio:  |▓▓▓▓▓▓▓▓▒▒░░         |
-            //  base:  |▓▒░░                 |   (20% da largura)
-            //
+            // Reflexo diagonal — trapézio 80%→20%, mesmo padrão do design system
             Canvas(modifier = Modifier.matchParentSize()) {
                 val alpha = if (isPressed) 0.04f else 0.40f
-
-                // Trapézio: lado esquerdo completo (0→height),
-                // topo vai até 80%, base vai até 20%
                 val path = Path().apply {
                     moveTo(0f, 0f)
                     lineTo(size.width * 0.80f, 0f)
@@ -163,7 +175,6 @@ fun GameButton3D(
                     lineTo(0f, size.height)
                     close()
                 }
-
                 clipPath(path) {
                     drawRect(
                         brush = Brush.horizontalGradient(
@@ -177,7 +188,6 @@ fun GameButton3D(
                 }
             }
 
-            // Label — determina a altura da face (matchParentSize do gloss depende disto)
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -185,12 +195,12 @@ fun GameButton3D(
                 contentAlignment = Alignment.Center,
             ) {
                 Text(
-                    text         = text,
-                    color        = Color.White,
-                    fontWeight   = FontWeight.ExtraBold,
-                    fontSize     = 18.sp,
+                    text          = text,
+                    color         = Color.White,
+                    fontWeight    = FontWeight.ExtraBold,
+                    fontSize      = 18.sp,
                     letterSpacing = 1.sp,
-                    style        = TextStyle(
+                    style         = TextStyle(
                         shadow = Shadow(
                             color      = colors.shadow.copy(alpha = 0.55f),
                             offset     = Offset(0f, 2f),
@@ -200,5 +210,78 @@ fun GameButton3D(
                 )
             }
         }
+    }
+}
+
+// ── Outlined ────────────────────────────────────────────────────────────────────
+@Composable
+private fun OutlinedButton(
+    text: String,
+    colors: ButtonColors,
+    modifier: Modifier,
+    enabled: Boolean,
+    isPressed: Boolean,
+    clickableModifier: Modifier,
+) {
+    // Press feedback: fundo anima de transparente → 15% da shadow color
+    val pressedBg by animateColorAsState(
+        targetValue   = if (isPressed) colors.shadow.copy(alpha = 0.15f) else Color.Transparent,
+        animationSpec = spring(stiffness = Spring.StiffnessMedium),
+        label         = "btn_outlined_bg",
+    )
+
+    Box(
+        modifier = modifier
+            .alpha(if (enabled) 1f else 0.45f)
+            .clip(RoundedCornerShape(24.dp))
+            .border(3.dp, colors.shadow, RoundedCornerShape(24.dp))
+            .background(pressedBg)
+            .then(clickableModifier)
+            .padding(horizontal = 24.dp, vertical = 13.dp),
+        contentAlignment = Alignment.Center,
+    ) {
+        Text(
+            text          = text,
+            color         = colors.shadow,
+            fontWeight    = FontWeight.ExtraBold,
+            fontSize      = 18.sp,
+            letterSpacing = 1.sp,
+        )
+    }
+}
+
+// ── Ghost ───────────────────────────────────────────────────────────────────────
+@Composable
+private fun GhostButton(
+    text: String,
+    colors: ButtonColors,
+    modifier: Modifier,
+    enabled: Boolean,
+    isPressed: Boolean,
+    clickableModifier: Modifier,
+) {
+    // Press feedback: fundo anima de transparente → 12% da shadow color
+    val pressedBg by animateColorAsState(
+        targetValue   = if (isPressed) colors.shadow.copy(alpha = 0.12f) else Color.Transparent,
+        animationSpec = spring(stiffness = Spring.StiffnessMedium),
+        label         = "btn_ghost_bg",
+    )
+
+    Box(
+        modifier = modifier
+            .alpha(if (enabled) 1f else 0.45f)
+            .clip(RoundedCornerShape(24.dp))
+            .background(pressedBg)
+            .then(clickableModifier)
+            .padding(horizontal = 24.dp, vertical = 13.dp),
+        contentAlignment = Alignment.Center,
+    ) {
+        Text(
+            text          = text,
+            color         = colors.shadow,
+            fontWeight    = FontWeight.Bold,
+            fontSize      = 18.sp,
+            letterSpacing = 1.sp,
+        )
     }
 }
