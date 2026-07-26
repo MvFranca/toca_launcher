@@ -75,7 +75,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                         xp = 1250,
                         overallProgress = 0.65f,
                         mission = DailyMission(
-                            title = "Missão do dia",
+                            title = "Missão do Dia",
                             description = "Complete 3 atividades de Matemática",
                             current = 1,
                             total = 3,

@@ -33,14 +33,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.domo.R
-import com.example.domo.feature.home.presentation.model.MORE_APPS_PACKAGE
-import com.example.domo.feature.home.presentation.model.UnlockedAppUi
-import com.example.domo.feature.home.presentation.preview.previewHomeUiState
-import com.example.domo.core.designsystem.TocaBege
+import com.example.domo.core.designsystem.TocaCardBranco
 import com.example.domo.core.designsystem.TocaLaranja
 import com.example.domo.core.designsystem.TocaMarrom
 import com.example.domo.core.designsystem.TocaTextoMuted
 import com.example.domo.core.designsystem.TocaTheme
+import com.example.domo.feature.home.presentation.model.MORE_APPS_PACKAGE
+import com.example.domo.feature.home.presentation.model.UnlockedAppUi
+import com.example.domo.feature.home.presentation.preview.previewHomeUiState
 
 @Composable
 fun UnlockedAppsSection(
@@ -53,9 +53,9 @@ fun UnlockedAppsSection(
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(20.dp))
-            .background(TocaBege)
+            .background(TocaCardBranco)
             .padding(horizontal = 14.dp, vertical = 16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(14.dp),
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),

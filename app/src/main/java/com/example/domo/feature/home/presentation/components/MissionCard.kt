@@ -22,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
@@ -47,29 +48,29 @@ fun MissionCard(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .shadow(4.dp, RoundedCornerShape(20.dp))
-            .clip(RoundedCornerShape(20.dp))
+            .shadow(4.dp, RoundedCornerShape(24.dp))
+            .clip(RoundedCornerShape(24.dp))
             .background(TocaCardBranco)
             .clickable(onClick = onClick)
             .defaultMinSize(minHeight = 48.dp)
             .semantics {
                 contentDescription = "${mission.title}. ${mission.description}. Progresso $progressLabel"
             }
-            .padding(16.dp),
+            .padding(horizontal = 14.dp, vertical = 14.dp),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(14.dp),
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         Box(
             modifier = Modifier
                 .size(44.dp)
                 .clip(CircleShape)
-                .background(TocaLaranja.copy(alpha = 0.15f)),
+                .background(TocaLaranja),
             contentAlignment = Alignment.Center,
         ) {
             Icon(
                 imageVector = Icons.Rounded.TrackChanges,
                 contentDescription = null,
-                tint = TocaLaranja,
+                tint = Color.White,
                 modifier = Modifier.size(24.dp),
             )
         }
@@ -77,13 +78,13 @@ fun MissionCard(
         Column(modifier = Modifier.weight(1f)) {
             Text(
                 text = mission.title,
-                color = TocaMarrom,
+                color = TocaLaranja,
                 fontWeight = FontWeight.Bold,
                 fontSize = 15.sp,
             )
             Text(
                 text = mission.description,
-                color = TocaTextoMuted,
+                color = TocaMarrom,
                 fontSize = 13.sp,
             )
         }
@@ -100,7 +101,7 @@ fun MissionCard(
             ) {
                 Text(
                     text = progressLabel,
-                    color = TocaMarrom,
+                    color = TocaLaranja,
                     fontWeight = FontWeight.SemiBold,
                     fontSize = 13.sp,
                 )
@@ -120,7 +121,7 @@ private fun MissionCardPreview() {
     TocaTheme {
         MissionCard(
             mission = DailyMission(
-                title = "Missão do dia",
+                title = "Missão do Dia",
                 description = "Complete 3 atividades de Matemática",
                 current = 1,
                 total = 3,

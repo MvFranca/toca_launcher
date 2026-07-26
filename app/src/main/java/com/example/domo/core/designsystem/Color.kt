@@ -14,3 +14,14 @@ val TocaCardBranco = Color(0xFFFFFEFE)
 val TocaTextoMuted = Color(0xFF888780)
 val TocaRoxoSuave = Color(0xFF9B7EC8)
 val TocaAmarelo = Color(0xFFF5C842)
+
+/** Bottom navigation */
+val TocaNavOrange = Color(0xFFFE6310)
+val TocaNavSurface = Color(0xFFFFFFFF)
+val TocaNavBackdrop = Color(0xFFFEECD4)
+val TocaNavInactive = Color(0xFFA89078)
+
+/** Gradiente do painel inferior da Home (topo → base). */
+val TocaHomePanelGradientTop = Color(0xFF8B785C)
+val TocaHomePanelGradientMid = Color(0xFFCBAF87)
+val TocaHomePanelGradientBottom = Color(0xFFFEECD4)

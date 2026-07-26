@@ -1,5 +1,6 @@
 package com.example.domo.feature.home.presentation.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -7,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -20,16 +22,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.domo.feature.home.presentation.model.HomeUser
-import com.example.domo.core.designsystem.TocaLaranja
+import com.example.domo.R
 import com.example.domo.core.designsystem.TocaMarrom
+import com.example.domo.core.designsystem.TocaNavOrange
 import com.example.domo.core.designsystem.TocaTheme
+import com.example.domo.feature.home.presentation.model.HomeUser
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -61,24 +67,30 @@ fun HomeTopBar(
                 modifier = Modifier
                     .size(48.dp)
                     .clip(CircleShape)
-                    .background(TocaLaranja)
+                    .background(TocaNavOrange)
                     .clickable(onClick = onProfileClick)
                     .defaultMinSize(minWidth = 48.dp, minHeight = 48.dp)
-                    .semantics { contentDescription = user.avatarContentDescription },
+                    .semantics { contentDescription = user.avatarContentDescription }
+                    .padding(8.dp),
                 contentAlignment = Alignment.Center,
             ) {
-                Text(text = "🦊", fontSize = 24.sp)
+                Image(
+                    painter = painterResource(R.drawable.fox_simple),
+                    contentDescription = null,
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier.fillMaxSize(),
+                )
             }
 
             Column {
                 Text(
                     text = greeting,
-                    color = androidx.compose.ui.graphics.Color.White.copy(alpha = 0.85f),
+                    color = Color.White.copy(alpha = 0.85f),
                     fontSize = 14.sp,
                 )
                 Text(
                     text = "${user.name}!",
-                    color = androidx.compose.ui.graphics.Color.White,
+                    color = Color.White,
                     fontWeight = FontWeight.Bold,
                     fontSize = 20.sp,
                 )
@@ -100,7 +112,7 @@ fun HomeTopBar(
                 Text(text = "⭐", fontSize = 14.sp)
                 Text(
                     text = "$xpFormatted pontos",
-                    color = androidx.compose.ui.graphics.Color.White,
+                    color = Color.White,
                     fontWeight = FontWeight.SemiBold,
                     fontSize = 13.sp,
                 )
@@ -108,8 +120,9 @@ fun HomeTopBar(
 
             Box(
                 modifier = Modifier
-                    .size(48.dp)
+                    .size(44.dp)
                     .clip(CircleShape)
+                    .background(TocaMarrom.copy(alpha = 0.85f))
                     .clickable(onClick = onNotificationsClick)
                     .defaultMinSize(minWidth = 48.dp, minHeight = 48.dp)
                     .semantics {
@@ -124,8 +137,8 @@ fun HomeTopBar(
                 Icon(
                     imageVector = Icons.Rounded.Notifications,
                     contentDescription = null,
-                    tint = TocaLaranja,
-                    modifier = Modifier.size(28.dp),
+                    tint = Color.White,
+                    modifier = Modifier.size(22.dp),
                 )
                 if (notificationCount > 0) {
                     Box(
@@ -133,12 +146,12 @@ fun HomeTopBar(
                             .align(Alignment.TopEnd)
                             .size(18.dp)
                             .clip(CircleShape)
-                            .background(TocaLaranja),
+                            .background(TocaNavOrange),
                         contentAlignment = Alignment.Center,
                     ) {
                         Text(
                             text = notificationCount.coerceAtMost(9).toString(),
-                            color = androidx.compose.ui.graphics.Color.White,
+                            color = Color.White,
                             fontSize = 10.sp,
                             fontWeight = FontWeight.Bold,
                         )

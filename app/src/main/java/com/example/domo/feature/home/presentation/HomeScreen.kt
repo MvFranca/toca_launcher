@@ -7,17 +7,17 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawingPadding
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -32,8 +32,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -42,20 +44,22 @@ import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.domo.core.designsystem.TocaHomePanelGradientBottom
+import com.example.domo.core.designsystem.TocaHomePanelGradientMid
+import com.example.domo.core.designsystem.TocaHomePanelGradientTop
+import com.example.domo.core.designsystem.TocaLaranja
+import com.example.domo.core.designsystem.TocaTheme
 import com.example.domo.core.launcher.AppBlockerUtils
 import com.example.domo.core.launcher.LauncherUtils
 import com.example.domo.feature.home.presentation.components.HeroSection
 import com.example.domo.feature.home.presentation.components.HomeBackground
 import com.example.domo.feature.home.presentation.components.HomeTopBar
 import com.example.domo.feature.home.presentation.components.MissionCard
-import com.example.domo.feature.home.presentation.components.ProgressCard
 import com.example.domo.feature.home.presentation.components.QuickActionsGrid
 import com.example.domo.feature.home.presentation.components.TocaBottomNavigation
 import com.example.domo.feature.home.presentation.components.UnlockedAppsSection
 import com.example.domo.feature.home.presentation.model.HomeScreenStatus
 import com.example.domo.feature.home.presentation.preview.previewHomeUiState
-import com.example.domo.core.designsystem.TocaLaranja
-import com.example.domo.core.designsystem.TocaTheme
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
@@ -117,12 +121,12 @@ fun HomeScreen(
     }
 
     HomeBackground {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .safeDrawingPadding(),
-        ) {
-            Column(modifier = Modifier.fillMaxSize()) {
+        Box(modifier = Modifier.fillMaxSize()) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .statusBarsPadding(),
+            ) {
                 if (!uiState.isDefaultLauncher) {
                     ActivateBanner(
                         onActivateClick = { LauncherUtils.openDefaultLauncherSettings(context) },
@@ -177,27 +181,44 @@ private fun HomeSuccessContent(
     onQuickActionClick: (String) -> Unit,
     onAppClick: (String) -> Unit,
 ) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState())
-            .padding(bottom = 100.dp),
-    ) {
-        HomeTopBar(
-            user = uiState.user,
-            greeting = uiState.greeting,
-            xp = uiState.xp,
-            notificationCount = uiState.notificationCount,
-            onProfileClick = onProfileClick,
-            onNotificationsClick = onNotificationsClick,
-        )
+    val density = LocalDensity.current
+    val panelOffsetY = with(density) { 250.toDp() }
+
+    Box(modifier = Modifier.fillMaxSize()) {
+        Column(modifier = Modifier.fillMaxSize()) {
+            HomeTopBar(
+                user = uiState.user,
+                greeting = uiState.greeting,
+                xp = uiState.xp,
+                notificationCount = uiState.notificationCount,
+                onProfileClick = onProfileClick,
+                onNotificationsClick = onNotificationsClick,
+            )
+            HeroSection(
+                foxState = uiState.foxState,
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth(),
+            )
+        }
 
         Column(
-            modifier = Modifier.padding(horizontal = 16.dp),
-            verticalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(14.dp),
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .offset(y = panelOffsetY)
+                .fillMaxWidth()
+                .background(
+                    brush = Brush.verticalGradient(
+                        colorStops = arrayOf(
+                            0f to TocaHomePanelGradientTop.copy(alpha = 0f),
+                            0.36f to TocaHomePanelGradientMid.copy(alpha = 0.63f),
+                            1f to TocaHomePanelGradientBottom,
+                        ),
+                    ),
+                )
+                .padding(start = 16.dp, end = 16.dp, top = 28.dp, bottom = 130.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
-            ProgressCard(progress = uiState.overallProgress)
-            HeroSection(foxState = uiState.foxState)
             MissionCard(mission = uiState.mission, onClick = onMissionClick)
             QuickActionsGrid(
                 actions = uiState.quickActions,
@@ -208,7 +229,6 @@ private fun HomeSuccessContent(
                 availableScreenMinutes = uiState.availableScreenMinutes,
                 onAppClick = onAppClick,
             )
-            Spacer(modifier = Modifier.height(8.dp))
         }
     }
 }

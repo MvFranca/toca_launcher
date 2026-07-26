@@ -62,8 +62,8 @@ data class UnlockedAppUi(
 const val MORE_APPS_PACKAGE = "__more_apps__"
 
 fun defaultQuickActions(): List<QuickActionItem> = listOf(
-    QuickActionItem("continue_mission", "Continuar missão", QuickActionIcon.ContinueMission),
+    QuickActionItem("continue_mission", "Missões", QuickActionIcon.ContinueMission),
     QuickActionItem("learn", "Aprender", QuickActionIcon.Learn),
     QuickActionItem("achievements", "Conquistas", QuickActionIcon.Achievements),
-    QuickActionItem("rewards", "Recompensas", QuickActionIcon.Rewards),
+    QuickActionItem("rewards", "Prêmios", QuickActionIcon.Rewards),
 )
