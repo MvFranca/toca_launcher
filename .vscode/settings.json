@@ -1,4 +1,22 @@
 {
   "markdown.preview.security.level": "allowInsecureContent",
-  "markdown.preview.resourceRoots": ["${workspaceFolder}"]
+  "markdown.preview.resourceRoots": [
+    "${workspaceFolder}"
+  ],
+
+  // JDK do Android Studio (evita o JRE incompleto da extensão Java do Cursor)
+  "java.jdt.ls.java.home": "/Applications/Android Studio.app/Contents/jbr/Contents/Home",
+  "java.import.gradle.java.home": "/Applications/Android Studio.app/Contents/jbr/Contents/Home",
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-21",
+      "path": "/Applications/Android Studio.app/Contents/jbr/Contents/Home",
+      "default": true
+    }
+  ],
+  "java.configuration.updateBuildConfiguration": "automatic",
+
+  // fwcd.kotlin não resolve dependências Android (androidx, Compose, etc.)
+  // Os "erros" vermelhos são falsos positivos — o Gradle compila normalmente.
+  "kotlin.languageServer.enabled": false
 }

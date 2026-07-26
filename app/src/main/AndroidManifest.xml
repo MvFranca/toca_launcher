@@ -19,6 +19,7 @@
     </queries>
 
     <application
+        android:name=".TocaApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -46,7 +47,7 @@
         </activity>
 
         <activity
-            android:name=".ui.pin.PinLockActivity"
+            android:name=".feature.pin.presentation.PinLockActivity"
             android:exported="false"
             android:launchMode="singleInstance"
             android:theme="@style/Theme.Domo"
@@ -54,7 +55,7 @@
             android:turnScreenOn="true" />
 
         <service
-            android:name=".service.AppBlockerService"
+            android:name=".services.AppBlockerService"
             android:exported="false"
             android:foregroundServiceType="specialUse">
             <property
@@ -63,7 +64,7 @@
         </service>
 
         <receiver
-            android:name=".service.BootReceiver"
+            android:name=".services.BootReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

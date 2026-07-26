@@ -34,3 +34,7 @@ logcat.txt
 .env.development
 .env.test
 .env.production
+.kotlin/
+.idea/
+.vscode/
+gradle/

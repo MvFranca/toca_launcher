@@ -1,6 +1,8 @@
-# 🦊 Arquitetura do Projeto — Toca Launcher
+# 🦊 Arquitetura do Projeto — TOCA Launcher
 
-> Este documento descreve a arquitetura proposta para o aplicativo Android da **Toca**, um launcher educativo gamificado voltado para crianças.
+> Este documento descreve a arquitetura do **TOCA Launcher**, o aplicativo Android voltado para crianças que compõe a **Plataforma TOCA**.
+>
+> O Launcher é parte de um ecossistema maior que inclui um Backend centralizado e um aplicativo para os pais. Este documento descreve **exclusivamente** a arquitetura do Launcher. O Backend e o App dos Pais são mencionados apenas como contexto de integração.
 
 O objetivo desta arquitetura é permitir que o projeto cresça durante anos mantendo:
 
@@ -10,6 +12,33 @@ O objetivo desta arquitetura é permitir que o projeto cresça durante anos mant
 * Escalabilidade
 * Testabilidade
 * Separação clara de responsabilidades
+
+---
+
+# Plataforma TOCA
+
+O TOCA Launcher é um dos componentes da Plataforma TOCA, uma solução completa formada por:
+
+```text
+              Plataforma TOCA
+
+          Backend (Spring Boot)
+
+                 REST API
+
+        ┌──────────┴──────────┐
+
+TOCA Launcher          TOCA Pais
+(Android)              (Android)
+```
+
+* **TOCA Launcher** — responsável pela experiência da criança: launcher, gamificação, aprendizado e controle de tempo;
+* **TOCA Pais** — responsável pelas configurações parentais: bloqueios, missões, limites de tempo e relatórios;
+* **Backend** — centraliza regras, persistência definitiva e sincronização entre os dois aplicativos.
+
+Ambos os aplicativos consomem a mesma API REST. O Launcher nunca se comunica diretamente com o App dos Pais. Toda troca de informações ocorre através do Backend.
+
+Este documento não detalha a arquitetura interna do Backend nem do App dos Pais.
 
 ---
 
@@ -40,6 +69,127 @@ app
 ```
 
 Cada módulo possui uma responsabilidade única.
+
+---
+
+# Offline First
+
+O Launcher foi projetado para funcionar **integralmente sem conexão com a internet**.
+
+A internet é utilizada exclusivamente para sincronização de dados. Toda a experiência principal — launcher, missões, gamificação, controles de tempo, perfil e configurações — permanece disponível independentemente da conectividade.
+
+Essa decisão garante que a criança nunca tenha sua experiência interrompida por instabilidade de rede.
+
+| Funcionalidade        | Offline |
+|-----------------------|---------|
+| Launcher              | ✅      |
+| Missões               | ✅      |
+| Apps instalados       | ✅      |
+| Apps bloqueados       | ✅      |
+| Tempo restante        | ✅      |
+| XP                    | ✅      |
+| Nível                 | ✅      |
+| Medalhas              | ✅      |
+| Avatar                | ✅      |
+| Perfil                | ✅      |
+| Configurações         | ✅      |
+| Recompensas pendentes | ✅      |
+
+### Fluxo Offline First
+
+```text
+Backend
+
+↓
+
+Primeira sincronização
+
+↓
+
+Room Database
+
+↓
+
+Launcher funciona offline
+
+↓
+
+Usuário utiliza normalmente
+
+↓
+
+Internet disponível
+
+↓
+
+WorkManager
+
+↓
+
+Backend atualizado
+```
+
+---
+
+# Fonte da Verdade
+
+A fonte da verdade varia de acordo com o contexto de uso.
+
+**Durante o uso da criança:**
+
+O **Room Database** é a fonte da verdade. Toda leitura de dados ocorre localmente, garantindo performance e disponibilidade offline.
+
+**Durante sincronizações:**
+
+O **Backend** torna-se a fonte da verdade para configurações e regras parentais.
+
+### Política por domínio
+
+| Domínio                   | Fonte da Verdade |
+|---------------------------|-----------------|
+| Bloqueios de aplicativos  | Backend vence   |
+| Tempo permitido           | Backend vence   |
+| Missões criadas pelos pais| Backend vence   |
+| Configurações parentais   | Backend vence   |
+| XP acumulado              | Launcher envia  |
+| Progresso de missões      | Launcher envia  |
+| Medalhas conquistadas     | Launcher envia  |
+| Tempo de uso              | Launcher envia  |
+| Conclusão de missões      | Launcher envia  |
+
+---
+
+# Estratégia de Sincronização
+
+## Quando sincronizar
+
+A sincronização ocorre nos seguintes momentos:
+
+* Abertura do Launcher
+* Login do usuário
+* Internet restabelecida após perda de conectividade
+* WorkManager periódico em background
+* Sincronização manual acionada pelo usuário
+* Retorno do aplicativo ao foreground
+
+## Política de conflitos
+
+**Backend vence:**
+
+* Configurações de bloqueio
+* Apps bloqueados
+* Tempo permitido
+* Missões criadas pelos pais
+
+**Launcher envia:**
+
+* XP gerado
+* Progresso nas atividades
+* Medalhas conquistadas
+* Tempo utilizado por aplicativo
+* Missões concluídas
+
+Em caso de conflito de dados enviados pelo Launcher, a estratégia adotada é **last-write-wins** com timestamp, garantindo que a atualização mais recente seja persistida.
 
 ---
 
@@ -151,14 +301,32 @@ Sem lógica.
 
 ## core/network
 
-Responsável por:
+Módulo responsável por toda comunicação com a API REST do Backend.
 
-* Retrofit
-* APIs
-* DTOs
-* Interceptors
-* Token
-* Serialização
+```text
+network
+├── api            — interfaces Retrofit por domínio
+├── authentication — gerenciamento de tokens e refresh
+├── interceptors   — logging, autenticação e headers
+├── serializers    — adaptadores de serialização/deserialização
+├── retry          — política de retry em falhas transitórias
+├── sync           — contratos utilizados pela camada de sincronização
+└── websocket      — suporte futuro a comunicação em tempo real
+```
+
+**api** — define as interfaces Retrofit para cada domínio da plataforma (perfil, missões, gamificação, configurações).
+
+**authentication** — gerencia o ciclo de vida do JWT: armazenamento seguro, refresh automático e logout.
+
+**interceptors** — injetam o token de autenticação em todas as requisições, realizam logging em modo de depuração e adicionam headers necessários.
+
+**serializers** — adaptam os DTOs recebidos da API para os modelos de domínio utilizados pelo Launcher.
+
+**retry** — implementa política de reenvio automático para falhas de rede transitórias com backoff exponencial.
+
+**sync** — expõe contratos utilizados pelos workers de sincronização.
+
+**websocket** — reservado para suporte futuro a eventos em tempo real (notificações instantâneas, atualizações de missões).
 
 ---
 
@@ -284,6 +452,12 @@ Modelos relacionados ao aprendizado.
 
 ---
 
+## core/analytics
+
+Contratos e eventos de analytics utilizados pelo módulo `analytics-engine`.
+
+---
+
 # engine
 
 Os engines são o coração da aplicação.
@@ -314,12 +488,22 @@ Eles apenas recebem dados e retornam resultados.
 
 ## launcher-engine
 
-Responsável por:
+Responsável por toda a lógica de execução e controle do Launcher.
 
-* abrir aplicativos
-* bloquear aplicativos
-* verificar permissões
-* liberar acesso
+* Home e navegação principal
+* Barra inferior e atalhos
+* Avatar da criança na interface
+* Controle de navegação entre telas
+* Integração com missões ativas
+* Exibição e controle do tempo restante
+* Estado global da UI do Launcher
+* XP e progresso visível na home
+* Evolução e nível da criança
+* Perfil ativo da criança
+* Abertura de aplicativos
+* Bloqueio de aplicativos
+* Verificação de permissões
+* Liberação de acesso baseada em regras
 
 ---
 
@@ -349,15 +533,21 @@ desbloquear YouTube
 
 ## gamification-engine
 
-Responsável por:
+Concentra toda a lógica de gamificação do Launcher.
 
-* XP
-* Levels
-* Missões
-* Badges
-* Inventário
-* Sequências
-* Pontuação
+* XP — cálculo e acúmulo de experiência
+* Levels — progressão de nível da criança
+* Daily Missions — missões do dia
+* Weekly Missions — missões da semana
+* Achievements — conquistas desbloqueáveis
+* Inventory — gerenciamento de itens do inventário
+* Coins — moeda interna do jogo
+* Unlockables — itens que podem ser desbloqueados
+* Reward System — distribuição e validação de recompensas
+* Progress Tracking — rastreamento de progresso em tempo real
+* Streak — controle de sequências diárias
+
+Nenhuma feature calcula XP ou valida missões diretamente. Toda essa responsabilidade permanece concentrada neste engine.
 
 ---
 
@@ -365,12 +555,14 @@ Responsável por:
 
 Toda inteligência do aprendizado.
 
-Exemplo:
+* Lessons — estrutura e sequenciamento de lições
+* Quizzes — perguntas, respostas e validação
+* Adaptive Learning — adaptação de conteúdo ao perfil da criança
+* Difficulty — controle dinâmico de dificuldade
+* Recommendation — recomendação de próximas atividades
+* Learning Progress — rastreamento do progresso educacional
 
-* recomendações
-* dificuldade
-* progresso
-* adaptação
+Toda lógica educacional permanece isolada neste módulo. Nenhuma feature toma decisões pedagógicas diretamente.
 
 ---
 
@@ -382,15 +574,15 @@ Calcula recompensas.
 
 ## personalization-engine
 
-Gerencia toda evolução da toca.
+Gerencia toda evolução visual e personalização da Toca.
 
-Exemplo:
-
-* móveis
-* plantas
-* decoração
-* mascote
-* temas
+* Avatar — criação e evolução do avatar da criança
+* Inventário — itens cosméticos disponíveis
+* Cosméticos — roupas, acessórios e aparência do personagem
+* Decoração da Toca — móveis, plantas, objetos e ambientação
+* Evolução visual — progressão da aparência conforme o nível
+* Personagens — personagens desbloqueáveis
+* Itens desbloqueáveis — recompensas visuais obtidas por progresso
 
 ---
 
@@ -477,6 +669,43 @@ Injeção de dependência da feature.
 
 ---
 
+## Responsabilidades por Feature
+
+### feature/home
+
+* Exibição do progresso atual da criança
+* Missão ativa em destaque
+* Avatar animado da criança
+* Atalhos para aplicativos favoritos
+* Recomendações de atividades
+
+### feature/explore
+
+* Descoberta de novos conteúdos e atividades
+* Desafios disponíveis
+* Navegação por categorias
+
+### feature/learn
+
+* Atividades educacionais
+* Quizzes interativos
+* Trilhas de aprendizado
+
+### feature/missions
+
+* Listagem de missões ativas
+* Progresso por missão
+* Recompensas disponíveis ao concluir
+
+### feature/profile
+
+* Visualização e edição do avatar
+* Inventário de itens cosméticos
+* Cosméticos equipados
+* Evolução e nível atual
+
+---
+
 # services
 
 Componentes Android que vivem fora da interface.
@@ -527,9 +756,30 @@ Missões.
 
 ## sync
 
-WorkManager.
+Módulo responsável pela sincronização em background entre o Launcher e o Backend.
 
-Sincronização.
+```text
+Sync Engine
+
+├── Connectivity Monitor   — detecta mudanças de conectividade e dispara sincronizações
+├── Sync Worker            — worker do WorkManager responsável pela execução da sincronização
+├── Upload Manager         — envia dados produzidos pelo Launcher ao Backend (XP, progresso, tempo)
+├── Download Manager       — baixa configurações e atualizações do Backend para o Room
+├── Conflict Resolver      — resolve conflitos entre dados locais e remotos conforme a política definida
+└── Retry Policy           — reencaminha operações falhas com backoff exponencial
+```
+
+**Connectivity Monitor** — observa o estado da rede em tempo real. Ao detectar conexão disponível, notifica o `Sync Worker` para iniciar a sincronização pendente.
+
+**Sync Worker** — implementado com WorkManager. Garante execução mesmo que o aplicativo esteja em background. Pode ser acionado periodicamente, por mudança de conectividade ou manualmente.
+
+**Upload Manager** — responsável por coletar e enviar ao Backend todos os dados gerados pelo uso da criança: XP, progresso em missões, medalhas conquistadas e tempo de uso por aplicativo.
+
+**Download Manager** — responsável por buscar no Backend as configurações mais recentes: bloqueios, tempo permitido, missões criadas pelos pais e atualizações de perfil.
+
+**Conflict Resolver** — aplica a política de conflitos definida na seção "Fonte da Verdade". Backend vence para configurações; Launcher vence para dados de uso.
+
+**Retry Policy** — gerencia tentativas automáticas de reenvio para operações que falharam por instabilidade de rede, utilizando backoff exponencial com limite máximo de tentativas.
 
 ---
 
@@ -550,6 +800,36 @@ Plugins.
 Version Catalog.
 
 Configurações compartilhadas.
+
+---
+
+# Integração com a Plataforma
+
+O Launcher nunca se comunica diretamente com o App dos Pais. Toda comunicação entre os dois aplicativos ocorre exclusivamente através do Backend.
+
+```text
+Launcher
+
+↓
+
+REST API
+
+↓
+
+Backend
+
+↓
+
+PostgreSQL
+
+↑
+
+App dos Pais
+```
+
+O App dos Pais configura bloqueios, define missões e ajusta limites de tempo. O Backend persiste essas configurações. O Launcher as recebe na próxima sincronização e aplica localmente via Room.
+
+Da mesma forma, o Launcher envia ao Backend os dados produzidos pela criança. O App dos Pais os consome para exibir relatórios e acompanhamento.
 
 ---
 
@@ -617,58 +897,99 @@ Tudo reutilizável deve morar em Core.
 
 ---
 
+# Decisões Arquiteturais
+
+## Offline First
+
+O Launcher nunca depende da internet para funcionar. Toda a experiência da criança é servida localmente pelo Room Database. A sincronização ocorre de forma transparente em background.
+
+---
+
+## Backend como sincronizador
+
+O Backend não é a fonte da verdade durante o uso. Ele é o sincronizador. A persistência definitiva ocorre no Backend, mas o Launcher opera de forma completamente autônoma durante a sessão da criança.
+
+---
+
+## Room como cache principal
+
+Durante o uso, o Room é a principal fonte de dados. Todas as queries da UI leem do banco local, garantindo performance consistente independentemente da conectividade.
+
+---
+
+## WorkManager
+
+Toda sincronização ocorre em background via WorkManager. Isso garante que a sincronização seja executada mesmo que o aplicativo seja fechado, respeitando as restrições de bateria e rede definidas pelo sistema.
+
+---
+
+## Engines
+
+Toda regra de negócio permanece concentrada nas Engines. Features nunca calculam XP, validam missões ou tomam decisões de desbloqueio diretamente. Isso garante que as regras sejam reutilizáveis, testáveis e isoladas da interface.
+
+---
+
+## MVVM
+
+ViewModels não possuem regra de negócio. Eles apenas observam estados expostos pelas Engines e pelos UseCases, repassando-os para a UI. Toda lógica que não é de apresentação pertence ao domain ou ao engine correspondente.
+
+---
+
+## Feature First
+
+Cada Feature possui responsabilidades bem definidas e vive isolada das demais. A comunicação entre features, quando necessária, ocorre através de contratos definidos no core ou nos engines.
+
+---
+
+## Clean Architecture
+
+A UI nunca acessa diretamente a camada de dados. O fluxo sempre percorre: Screen → ViewModel → UseCase → Repository → DataSource. Isso garante que cada camada possa ser substituída ou testada de forma independente.
+
+---
+
+# Analytics
+
+Eventos rastreados pelo Launcher.
+
+| Evento               | Descrição                                      |
+|----------------------|------------------------------------------------|
+| `mission_started`    | Criança iniciou uma missão                     |
+| `mission_completed`  | Criança concluiu uma missão                    |
+| `reward_claimed`     | Recompensa resgatada                           |
+| `lesson_completed`   | Lição educacional concluída                    |
+| `app_blocked`        | Aplicativo bloqueado pelo sistema              |
+| `app_unlocked`       | Aplicativo desbloqueado após conclusão         |
+| `level_up`           | Criança subiu de nível                         |
+| `daily_login`        | Primeiro acesso do dia                         |
+| `time_earned`        | Tempo de tela conquistado                      |
+| `time_used`          | Tempo de uso de aplicativo registrado          |
+| `avatar_customized`  | Avatar da criança personalizado                |
+
+---
+
 # Tecnologias
 
-## UI
+## Android — TOCA Launcher
 
 * Kotlin
 * Jetpack Compose
 * Material 3
 * Navigation Compose
-
----
-
-## Injeção de Dependência
-
-* Hilt
-
----
-
-## Persistência
-
 * Room
-* DataStore
-
----
-
-## Rede
-
 * Retrofit
 * OkHttp
-* Kotlin Serialization
-
----
-
-## Assíncrono
-
+* Hilt
 * Coroutines
 * Flow
-* StateFlow
-
----
-
-## Animações
-
-* Rive
+* DataStore
+* WorkManager
+* Coil
 * Lottie
+* Firebase Analytics *(futuro)*
 
----
+## Backend — contexto
 
-## Backend
-
-* Spring Boot
-* PostgreSQL
-* Redis
+O Backend é desenvolvido em Kotlin com Spring Boot, utilizando PostgreSQL como banco de dados relacional e autenticação via JWT. Este documento não detalha sua arquitetura interna.
 
 ---
 
@@ -706,4 +1027,4 @@ https://github.com/android/nowinandroid
 
 # Objetivo
 
-Criar uma base sólida para que a **Toca** possa evoluir de um launcher educativo para um ecossistema completo de aprendizagem infantil, mantendo uma arquitetura limpa, escalável e preparada para novos módulos, funcionalidades e plataformas.
+Criar uma base sólida para que o **TOCA Launcher** possa evoluir de um launcher educativo para um componente central de um ecossistema completo de aprendizagem infantil, mantendo uma arquitetura limpa, escalável e preparada para novos módulos, funcionalidades e integrações com a Plataforma TOCA.
