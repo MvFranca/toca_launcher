@@ -9,15 +9,18 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -35,7 +38,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -172,6 +174,9 @@ fun HomeScreen(
     }
 }
 
+/** Fração da altura da Home ocupada pelo painel inferior (cards + nav). */
+private const val HomeBottomPanelHeightFraction = 0.52f
+
 @Composable
 private fun HomeSuccessContent(
     uiState: HomeUiState,
@@ -181,10 +186,8 @@ private fun HomeSuccessContent(
     onQuickActionClick: (String) -> Unit,
     onAppClick: (String) -> Unit,
 ) {
-    val density = LocalDensity.current
-    val panelOffsetY = with(density) { 250.toDp() }
-
     Box(modifier = Modifier.fillMaxSize()) {
+        // Cenário fixo: header + raposa alinhada ao background
         Column(modifier = Modifier.fillMaxSize()) {
             HomeTopBar(
                 user = uiState.user,
@@ -194,30 +197,41 @@ private fun HomeSuccessContent(
                 onProfileClick = onProfileClick,
                 onNotificationsClick = onNotificationsClick,
             )
-            HeroSection(
-                foxState = uiState.foxState,
+            // Padding proporcional à altura do painel → escala em qualquer tela
+            // (no emulador médio ~450.dp, o valor que você validou).
+            BoxWithConstraints(
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxWidth(),
-            )
+            ) {
+                val foxBottomPadding = maxHeight * HomeBottomPanelHeightFraction
+                HeroSection(
+                    foxState = uiState.foxState,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(bottom = foxBottomPadding),
+                )
+            }
         }
 
+        // Painel inferior scrollável (não cobre a raposa do cenário)
         Column(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .offset(y = panelOffsetY)
                 .fillMaxWidth()
+                .fillMaxHeight(HomeBottomPanelHeightFraction)
                 .background(
                     brush = Brush.verticalGradient(
                         colorStops = arrayOf(
                             0f to TocaHomePanelGradientTop.copy(alpha = 0f),
-                            0.36f to TocaHomePanelGradientMid.copy(alpha = 0.63f),
+                            0.28f to TocaHomePanelGradientMid.copy(alpha = 0.55f),
                             1f to TocaHomePanelGradientBottom,
                         ),
                     ),
                 )
-                .padding(start = 16.dp, end = 16.dp, top = 28.dp, bottom = 130.dp),
-            verticalArrangement = Arrangement.spacedBy(10.dp),
+                .verticalScroll(rememberScrollState())
+                .padding(start = 16.dp, end = 16.dp, top = 20.dp, bottom = 150.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             MissionCard(mission = uiState.mission, onClick = onMissionClick)
             QuickActionsGrid(

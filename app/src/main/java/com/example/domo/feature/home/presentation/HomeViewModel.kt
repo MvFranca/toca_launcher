@@ -44,6 +44,7 @@ private val FEATURED_APP_PACKAGES = listOf(
     "com.spotify.music",
     "com.android.camera2",
     "com.android.camera",
+    "com.google.android.apps.photos",
 )
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
@@ -169,7 +170,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                     icon = app.icon,
                 )
             }
-            .take(4)
+            .take(5)
 
         val mockApps = if (featured.isEmpty()) {
             listOf(
@@ -177,6 +178,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                 UnlockedAppUi("com.whatsapp", "WhatsApp", isLocked = false),
                 UnlockedAppUi("com.spotify.music", "Spotify", isLocked = false),
                 UnlockedAppUi("com.android.camera", "Câmera", isLocked = false),
+                UnlockedAppUi("com.google.android.apps.photos", "Fotos", isLocked = false),
             )
         } else {
             featured

@@ -14,8 +14,8 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
-import com.example.domo.feature.home.presentation.model.FoxAnimationState
 import com.example.domo.core.designsystem.TocaTheme
+import com.example.domo.feature.home.presentation.model.FoxAnimationState
 
 @Composable
 fun HeroSection(
@@ -31,15 +31,13 @@ fun HeroSection(
     )
 
     Box(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(bottom = 280.dp),
-        contentAlignment = Alignment.Center,
+        modifier = modifier.fillMaxSize(),
+        contentAlignment = Alignment.BottomCenter,
     ) {
         LottieAnimation(
             composition = composition,
             progress = { progress },
-            modifier = Modifier.fillMaxSize(0.55f),
+            modifier = Modifier.fillMaxSize(0.58f),
         )
     }
 }

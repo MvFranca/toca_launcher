@@ -28,6 +28,7 @@ val previewHomeUiState = HomeUiState(
         UnlockedAppUi("com.whatsapp", "WhatsApp", isLocked = false),
         UnlockedAppUi("com.spotify.music", "Spotify", isLocked = false),
         UnlockedAppUi("com.android.camera", "Câmera", isLocked = false),
+        UnlockedAppUi("com.google.android.apps.photos", "Fotos", isLocked = false),
         UnlockedAppUi(MORE_APPS_PACKAGE, "Mais apps", isLocked = true),
     ),
     availableScreenMinutes = 35,

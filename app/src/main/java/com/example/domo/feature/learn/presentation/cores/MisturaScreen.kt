@@ -85,10 +85,10 @@ import kotlin.math.cos
 import kotlin.math.sin
 
 // ── Paleta — idêntica à Calculadora Veloz ──────────────────────────────────────
-private val CBgStart     = Color(0xFFA659FE)
-private val CBgEnd       = Color(0xFF6F53FD)
+private val CBgStart     = Color(0xFFFF8A4C)
+private val CBgEnd       = Color(0xFFFE6310)
 private val CCardBg      = Color(0xFFFFFEFF)
-private val CCardShadow  = Color(0xFFD1D8FF)
+private val CCardShadow  = Color(0xFFFFD4B8)
 private val CTextDark    = Color(0xFF1A1A18)
 private val CCorrect     = Color(0xFF1D9E75)
 private val CCorrectDark = Color(0xFF15805E)

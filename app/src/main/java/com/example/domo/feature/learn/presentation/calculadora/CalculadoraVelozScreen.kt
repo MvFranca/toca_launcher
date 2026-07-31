@@ -70,8 +70,8 @@ import com.example.domo.core.ui.timerProgressColors
 import com.example.domo.feature.learn.domain.calculadora.SessionResult
 
 // ── Paleta game UI ──────────────────────────────────────────────────────────────
-private val CBgStart      = Color(0xFFA659FE)
-private val CBgEnd        = Color(0xFF6F53FD)
+private val CBgStart      = Color(0xFFFF8A4C)
+private val CBgEnd        = Color(0xFFFE6310)
 private val CGreenFace    = Color(0xFF67EB00)
 private val CGreenShadow  = Color(0xFF4EC307)
 private val CBlueFace     = Color(0xFF4CDAFE)
@@ -81,7 +81,7 @@ private val CPinkShadow   = Color(0xFFDA57F0)
 private val CYellowFace   = Color(0xFFFFDD17)
 private val CYellowShadow = Color(0xFFFFB213)
 private val CCardBg       = Color(0xFFFFFEFF)
-private val CCardShadow   = Color(0xFFD1D8FF)
+private val CCardShadow   = Color(0xFFFFD4B8)
 private val CTextDark     = Color(0xFF1A1A18)
 private val CCorrect      = Color(0xFF1D9E75)
 private val CCorrectDark  = Color(0xFF15805E)

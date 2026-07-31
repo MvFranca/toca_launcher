@@ -40,13 +40,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 // ── Tokens fixos do input — derivados do design system Domo ───────────────────
-private val InputShadow      = Color(0xFF8060BE) // Lilas.shadow
-private val InputFace        = Color(0xFFFAFAFE) // branco levemente lavanda
+private val InputShadow      = Color(0xFFD94E0A) // Laranja.shadow
+private val InputFace        = Color(0xFFFFFAF6) // branco levemente quente
 private val InputBorderIdle  = Color.White
-private val InputBorderFocus = Color(0xFF5DD0BC) // Teal.faceBtm
+private val InputBorderFocus = Color(0xFFFE6310) // Laranja padrão
 private val InputTextColor   = Color(0xFF2C2C2A) // CTextDark
 private val InputHintColor   = Color(0xFF888780) // CTextMuted
-private val InputIconColor   = Color(0xFF8060BE) // Lilas.shadow
+private val InputIconColor   = Color(0xFFFE6310) // Laranja padrão
 
 /**
  * Campo de texto gamificado 3D — mesma linguagem visual do [GameButton3D].

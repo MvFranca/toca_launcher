@@ -71,9 +71,9 @@ object GameButtonDefaults {
         shadow  = Color(0xFF279E8E),
     )
     val Lilas = ButtonColors(
-        faceTop = Color(0xFFD8C8F5),
-        faceBtm = Color(0xFFC5AAEC),
-        shadow  = Color(0xFF8060BE),
+        faceTop = Color(0xFFFFB07A),
+        faceBtm = Color(0xFFFF8A4C),
+        shadow  = Color(0xFFD94E0A),
     )
     val Verde = ButtonColors(
         faceTop = Color(0xFF96E865),

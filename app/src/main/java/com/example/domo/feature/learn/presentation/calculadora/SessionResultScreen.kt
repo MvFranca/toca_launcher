@@ -60,14 +60,14 @@ import com.example.domo.core.ui.timerProgressColors
 import com.example.domo.feature.learn.domain.calculadora.SessionResult
 
 // ── Paleta game UI ──────────────────────────────────────────────────────────────
-private val CBgStart      = Color(0xFFA659FE)
-private val CBgEnd        = Color(0xFF6F53FD)
+private val CBgStart      = Color(0xFFFF8A4C)
+private val CBgEnd        = Color(0xFFFE6310)
 private val CGreenFace    = Color(0xFF67EB00)
 private val CGreenShadow  = Color(0xFF4EC307)
-private val CPurpleFace   = Color(0xFFC286FF)
-private val CPurpleShadow = Color(0xFFA75CF4)
+private val COrangeFace   = Color(0xFFFF8A4C)
+private val COrangeShadow = Color(0xFFD94E0A)
 private val CCardBg       = Color(0xFFFFFEFF)
-private val CCardShadow   = Color(0xFFD1D8FF)
+private val CCardShadow   = Color(0xFFFFD4B8)
 private val CTextDark     = Color(0xFF1A1A18)
 private val CTextMuted    = Color(0xFF888780)
 private val CCorrect      = Color(0xFF1D9E75)
@@ -277,8 +277,8 @@ fun SessionResultScreen(
 
         GameButton3D(
             text = "VOLTAR AO INICIO",
-            faceColor = CPurpleFace,
-            shadowColor = CPurpleShadow,
+            faceColor = COrangeFace,
+            shadowColor = COrangeShadow,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 20.dp),
